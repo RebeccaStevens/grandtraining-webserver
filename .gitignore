@@ -1,0 +1,31 @@
+#########
+# Misc
+#########
+.DS_Store
+.buildpath
+.project
+.settings
+.idea
+.DS_Store
+
+#########
+# SilverStripe Framework, CMS and Modules
+#########
+vendor
+framework
+cms
+assets
+reports
+siteconfig
+silverstripe-cache
+silverstripe.log
+
+#########
+# SilverStripe Themes
+#########
+themes/*
+
+#########
+# Environment and Deployment
+#########
+_ss_environment.php
