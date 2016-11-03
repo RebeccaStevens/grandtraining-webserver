@@ -2,10 +2,10 @@
 class TestimonialsCard extends DataObject {
 
   private static $db = array(
-    'Heading' => 'Varchar'
+    'heading' => 'Varchar'
   );
 
   private static $has_many = array(
-    'Testimonials' => 'Testimonial'
+    'testimonials' => 'Testimonial'
   );
 }
