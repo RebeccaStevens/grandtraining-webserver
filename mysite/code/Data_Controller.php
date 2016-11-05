@@ -6,20 +6,33 @@
 class Data_Controller extends Controller {
 
   private static $url_handlers = array(
-    'home' => 'home'
+    'config' => 'siteConfigData',
+    'home' => 'homePageData'
   );
 
   private static $allowed_actions = array(
-    'home'
+    'siteConfigData',
+    'homePageData'
   );
+
+  /**
+   * Handles request for config.json
+   */
+  public function siteConfigData(SS_HTTPRequest $request) {
+    if (!$this::ensureJsonRequest($request)) {
+      return;
+    }
+    $this->echoJson();
+  }
 
   /**
    * Handles request for home.json
    */
-  public function home(SS_HTTPRequest $request) {
+  public function homePageData(SS_HTTPRequest $request) {
     if (!$this->ensureJsonRequest($request)) {
       return;
     }
+    $this->echoJson();
   }
 
   /**
