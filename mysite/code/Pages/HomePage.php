@@ -1,5 +1,5 @@
 <?php
-class HomePage extends Page {
+class HomePage extends WebAppPage {
   private static $can_be_root = true;
   private static $allowed_children = array();
 
@@ -39,6 +39,6 @@ class HomePage extends Page {
   }
 }
 
-class HomePage_Controller extends Page_Controller {
+class HomePage_Controller extends WebAppPage_Controller {
 
 }

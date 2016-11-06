@@ -1,11 +1,11 @@
 <?php
-class ClassesPage extends Page {
+class ClassesPage extends WebAppPage {
   private static $can_be_root = true;
   private static $allowed_children = array ();
 
 
 }
 
-class ClassesPage_Controller extends Page_Controller {
+class ClassesPage_Controller extends WebAppPage_Controller {
 
 }
