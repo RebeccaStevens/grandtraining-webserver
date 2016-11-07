@@ -26,20 +26,20 @@ class Data_Controller extends Controller {
     $siteConfig = SiteConfig::current_site_config();
 
     $company = array(
-      name => $siteConfig->Title,
-      slogan => $siteConfig->Tagline,
-      logo => array(
-        src => $siteConfig->logo()->URL,
-        placeholder => $this->getPlaceholder($siteConfig->logo())
+      'name' => $siteConfig->Title,
+      'slogan' => $siteConfig->Tagline,
+      'logo' => array(
+        'src' => $siteConfig->logo()->URL,
+        'placeholder' => $this->getPlaceholder($siteConfig->logo())
       )
     );
 
     $pages = array();
     foreach (WebAppPage::get() as $key => $page) {
       $pages[$page->URLSegment] = array(
-        tilte => $page->Title,
-        menuTitle => $page->MenuTitle,
-        url => $page->Link()
+        'tilte' => $page->Title,
+        'menuTitle' => $page->MenuTitle,
+        'url' => $page->Link()
       );
     }
 
@@ -49,21 +49,21 @@ class Data_Controller extends Controller {
         $cities[$venue->city] = array();
       }
       $cities[$venue->city][$venue->ID] = array(
-        id => $venue->ID,
-        city => $venue->city,
-        name => $venue->name,
-        fullname => $venue->fullname,
+        'id' => $venue->ID,
+        'city' => $venue->city,
+        'name' => $venue->name,
+        'fullname' => $venue->fullname,
       );
     }
 
     $this->echoJson(array(
-      company => $company,
-      pages => $pages,
-      cities => $cities,
-      links => array(
-        bookclass => "/bookings/booknow/bookclass"
+      'company' => $company,
+      'pages' => $pages,
+      'cities' => $cities,
+      'links' => array(
+        'bookclass' => "/bookings/booknow/bookclass"
       ),
-      countryCode => "+64"
+      'countryCode' => "+64"
     ));
   }
 
@@ -74,7 +74,47 @@ class Data_Controller extends Controller {
     if (!$this->ensureJsonRequest($request)) {
       return;
     }
-    $this->echoJson();
+
+    $homePage = HomePage::get()[0];
+
+    $carouselImages = array();
+    foreach ($homePage->carouselImages() as $key => $image) {
+      $sizedImage = $image->SetWidth(1920);
+      $carouselImages[] = array(
+        'src' => $sizedImage->URL,
+        'placeholder' => $this->getPlaceholder($sizedImage)
+      );
+    }
+
+    $philosophy = array(
+      'heading' => $homePage->philosophyCardHeading,
+      'content' => $homePage->philosophyCardContent
+    );
+
+    $classes = array(
+      'heading' => $homePage->classesCardHeading,
+      'content' => $homePage->classesCardContent
+    );
+
+    $testimonials = array(
+      'heading' => $homePage->testimonialsCardHeading,
+      'list' => array()
+    );
+    foreach ($homePage->testimonials() as $key => $testimonial) {
+      $testimonials['list'][] = array(
+        'by' => $testimonial->by,
+        'date' => $testimonial->date,
+        'content' => $testimonial->content
+      );
+    }
+
+    $this->echoJson(array(
+      'welcome' => $homePage->welcome,
+      'carouselImages' => $carouselImages,
+      'philosophy' => $philosophy,
+      'testimonials' => $testimonials,
+      'classes' => $classes
+    ));
   }
 
   /**
