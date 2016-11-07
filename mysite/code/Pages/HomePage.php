@@ -29,11 +29,11 @@ class HomePage extends WebAppPage {
 
     $fields->addFieldToTab('Root.Cards', TextField::create('PhilosophyCardHeading', 'Philosophy Card\'s Heading'));
     $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('PhilosophyCardContent', 'Philosophy Card\'s Content'));
-    $editorField->setRows(3);
+    $editorField->setRows(10);
 
     $fields->addFieldToTab('Root.Cards', TextField::create('ClassesCardHeading', 'Classes Card\'s Heading'));
     $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('ClassesCardContent', 'Classes Card\'s Content'));
-    $editorField->setRows(3);
+    $editorField->setRows(10);
 
     $fields->addFieldToTab('Root.Cards', TextField::create('TestimonialsCardHeading', 'Testimonials Card\'s Heading'));
     // $fields->addFieldToTab('Root.Cards', GridField::create('Testimonials', 'Testimonials'));

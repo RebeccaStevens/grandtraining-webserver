@@ -37,7 +37,7 @@ class Venue extends DataObject {
       TextField::create('Fullname', 'Full Venue Name'),
       TextareaField::create('Address', 'Address'),
       PhoneNumberField::create('ContactNumber', 'Contact Number'),
-      TextField::create('Email', 'Email'),
+      EmailField::create('Email', 'Email'),
       TextField::create('Notes', 'Notes'),
       NumericField::create('Latitude', 'Latitude'),
       NumericField::create('Longitude', 'Longitude')
