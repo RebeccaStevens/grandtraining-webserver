@@ -2,7 +2,7 @@
 class SiteConfigExtension extends DataExtension {
 
   public static $db = array(
-    'FacebookLink' => 'Varchar'
+    'FacebookLink' => 'Varchar(256)'
   );
 
   public static $has_one = array(

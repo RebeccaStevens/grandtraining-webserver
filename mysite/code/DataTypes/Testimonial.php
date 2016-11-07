@@ -2,12 +2,12 @@
 class Testimonial extends DataObject {
 
   private static $db = array(
-    'by' => 'Varchar',
-    "date" => "Date",
-    "content" => "Varchar"
+    'Author' => 'Varchar(128)',
+    "DateWritten" => "Date",
+    "Content" => "Text"
   );
 
   private static $has_one = array(
-    'page' => 'HomePage'
+    'Page' => 'HomePage'
   );
 }

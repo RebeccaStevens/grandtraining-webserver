@@ -2,45 +2,45 @@
 class Venue extends DataObject {
 
   private static $db = array(
-    'city' => 'Varchar(100)',
-    'name' => 'Varchar(100)',
-    'fullname' => 'Varchar(256)',
-    'address' => 'Varchar(256)',
-    'contactNumber' => 'Varchar',
-    'email' => 'Varchar(256)',
-    'notes' => 'Varchar(256)',
-    'latitude' => 'Float',
-    'longitude' => 'Float'
+    'City' => 'Varchar(100)',
+    'Name' => 'Varchar(100)',
+    'Fullname' => 'Varchar(256)',
+    'Address' => 'Varchar(256)',
+    'ContactNumber' => 'Varchar',
+    'EmailAddress' => 'Varchar(256)',
+    'Notes' => 'Varchar(256)',
+    'Latitude' => 'Float',
+    'Longitude' => 'Float'
   );
 
   private static $summary_fields = array(
-    'fullname' => 'Full Venue Name',
-    'city' => 'City',
-    'name' => 'Short Venue Name',
-    'contactNumber' => 'Contact Number',
-    'email' => 'Email'
+    'Fullname' => 'Full Venue Name',
+    'City' => 'City',
+    'Name' => 'Short Venue Name',
+    'ContactNumber' => 'Contact Number',
+    'EmailAddress' => 'Email'
   );
 
   private static $searchable_fields = array(
-    'city',
-    'name',
-    'fullname',
-    'contactNumber',
-    'email'
+    'City',
+    'Name',
+    'Fullname',
+    'ContactNumber',
+    'EmailAddress'
   );
 
   public function getCMSFields() {
     $fields = FieldList::create(TabSet::create('Root'));
     $fields->addFieldsToTab('Root.Main', array(
-      TextField::create('city', 'City'),
-      TextField::create('name', 'Short Venue Name'),
-      TextField::create('fullname', 'Full Venue Name'),
-      TextareaField::create('address', 'Address'),
-      PhoneNumberField::create('contactNumber', 'Contact Number'),
-      TextField::create('email', 'Email'),
-      TextField::create('notes', 'Notes'),
-      NumericField::create('latitude', 'Latitude'),
-      NumericField::create('longitude', 'Longitude')
+      TextField::create('City', 'City'),
+      TextField::create('Name', 'Short Venue Name'),
+      TextField::create('Fullname', 'Full Venue Name'),
+      TextareaField::create('Address', 'Address'),
+      PhoneNumberField::create('ContactNumber', 'Contact Number'),
+      TextField::create('Email', 'Email'),
+      TextField::create('Notes', 'Notes'),
+      NumericField::create('Latitude', 'Latitude'),
+      NumericField::create('Longitude', 'Longitude')
     ));
 
     return $fields;

@@ -29,8 +29,8 @@ class Data_Controller extends Controller {
       'name' => $siteConfig->Title,
       'slogan' => $siteConfig->Tagline,
       'logo' => array(
-        'src' => $siteConfig->logo()->URL,
-        'placeholder' => $this->getPlaceholder($siteConfig->logo())
+        'src' => $siteConfig->Logo()->URL,
+        'placeholder' => $this->getPlaceholder($siteConfig->Logo())
       )
     );
 
@@ -50,9 +50,9 @@ class Data_Controller extends Controller {
       }
       $cities[$venue->city][$venue->ID] = array(
         'id' => $venue->ID,
-        'city' => $venue->city,
-        'name' => $venue->name,
-        'fullname' => $venue->fullname,
+        'city' => $venue->City,
+        'name' => $venue->Name,
+        'fullname' => $venue->Fullname,
       );
     }
 
@@ -78,7 +78,7 @@ class Data_Controller extends Controller {
     $homePage = HomePage::get()[0];
 
     $carouselImages = array();
-    foreach ($homePage->carouselImages() as $key => $image) {
+    foreach ($homePage->CarouselImages() as $key => $image) {
       $sizedImage = $image->SetWidth(1920);
       $carouselImages[] = array(
         'src' => $sizedImage->URL,
@@ -87,20 +87,20 @@ class Data_Controller extends Controller {
     }
 
     $philosophy = array(
-      'heading' => $homePage->philosophyCardHeading,
-      'content' => $homePage->philosophyCardContent
+      'heading' => $homePage->PhilosophyCardHeading,
+      'content' => $homePage->PhilosophyCardContent
     );
 
     $classes = array(
-      'heading' => $homePage->classesCardHeading,
-      'content' => $homePage->classesCardContent
+      'heading' => $homePage->ClassesCardHeading,
+      'content' => $homePage->ClassesCardContent
     );
 
     $testimonials = array(
-      'heading' => $homePage->testimonialsCardHeading,
+      'heading' => $homePage->TestimonialsCardHeading,
       'list' => array()
     );
-    foreach ($homePage->testimonials() as $key => $testimonial) {
+    foreach ($homePage->Testimonials() as $key => $testimonial) {
       $testimonials['list'][] = array(
         'by' => $testimonial->by,
         'date' => $testimonial->date,
@@ -109,7 +109,7 @@ class Data_Controller extends Controller {
     }
 
     $this->echoJson(array(
-      'welcome' => $homePage->welcome,
+      'welcome' => $homePage->Welcome,
       'carouselImages' => $carouselImages,
       'philosophy' => $philosophy,
       'testimonials' => $testimonials,

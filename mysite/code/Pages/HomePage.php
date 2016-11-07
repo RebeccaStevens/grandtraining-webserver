@@ -4,39 +4,39 @@ class HomePage extends WebAppPage {
   private static $allowed_children = array();
 
   private static $db = array(
-    'welcome' => 'Varchar',
-    'philosophyCardHeading' => 'Varchar',
-    'philosophyCardContent' => 'HTMLText',
-    'classesCardHeading' => 'Varchar',
-    'classesCardContent' => 'HTMLText',
-    'testimonialsCardHeading' => 'Varchar'
+    'Welcome' => 'Varchar(256)',
+    'PhilosophyCardHeading' => 'Varchar(128)',
+    'PhilosophyCardContent' => 'HTMLText',
+    'ClassesCardHeading' => 'Varchar(128)',
+    'ClassesCardContent' => 'HTMLText',
+    'TestimonialsCardHeading' => 'Varchar(128)'
   );
 
   private static $has_many = array(
-    'testimonials' => 'Testimonial'
+    'Testimonials' => 'Testimonial'
   );
 
   private static $many_many = array(
-    'carouselImages' => 'Image'
+    'CarouselImages' => 'Image'
   );
 
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.Main', TextField::create('welcome', 'Welcome'));
+    $fields->addFieldToTab('Root.Main', TextField::create('Welcome', 'Welcome'));
 
     $fields->addFieldToTab('Root.CarouselImages', UploadField::create('carouselImages', 'Carousel Images'));
 
-    $fields->addFieldToTab('Root.Cards', TextField::create('philosophyCardHeading', 'Philosophy Card\'s Heading'));
-    $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('philosophyCardContent', 'Philosophy Card\'s Content'));
+    $fields->addFieldToTab('Root.Cards', TextField::create('PhilosophyCardHeading', 'Philosophy Card\'s Heading'));
+    $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('PhilosophyCardContent', 'Philosophy Card\'s Content'));
     $editorField->setRows(3);
 
-    $fields->addFieldToTab('Root.Cards', TextField::create('classesCardHeading', 'Classes Card\'s Heading'));
-    $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('classesCardContent', 'Classes Card\'s Content'));
+    $fields->addFieldToTab('Root.Cards', TextField::create('ClassesCardHeading', 'Classes Card\'s Heading'));
+    $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('ClassesCardContent', 'Classes Card\'s Content'));
     $editorField->setRows(3);
 
-    $fields->addFieldToTab('Root.Cards', TextField::create('testimonialsCardHeading', 'Testimonials Card\'s Heading'));
-    // $fields->addFieldToTab('Root.Cards', GridField::create('testimonialsCardTestimonials', 'Testimonials Card\'s Content', $this->testimonialsCard()->content));
+    $fields->addFieldToTab('Root.Cards', TextField::create('TestimonialsCardHeading', 'Testimonials Card\'s Heading'));
+    // $fields->addFieldToTab('Root.Cards', GridField::create('Testimonials', 'Testimonials'));
 
     return $fields;
   }
