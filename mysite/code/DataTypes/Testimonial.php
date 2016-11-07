@@ -6,4 +6,8 @@ class Testimonial extends DataObject {
     "date" => "Date",
     "content" => "Varchar"
   );
+
+  private static $has_one = array(
+    'page' => 'HomePage'
+  );
 }
