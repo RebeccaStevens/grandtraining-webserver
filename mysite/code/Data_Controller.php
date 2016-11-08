@@ -109,7 +109,8 @@ class Data_Controller extends Controller {
     }
 
     $this->echoJson(array(
-      'welcome' => $homePage->Welcome,
+      'heading1' => $homePage->Heading1,
+      'heading2' => $homePage->Heading2,
       'carouselImages' => $carouselImages,
       'philosophy' => $philosophy,
       'testimonials' => $testimonials,

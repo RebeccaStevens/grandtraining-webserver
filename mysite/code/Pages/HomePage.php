@@ -4,7 +4,8 @@ class HomePage extends WebAppPage {
   private static $allowed_children = array();
 
   private static $db = array(
-    'Welcome' => 'Varchar(256)',
+    'Heading1' => 'Varchar(256)',
+    'Heading2' => 'Varchar(256)',
     'PhilosophyCardHeading' => 'Varchar(128)',
     'PhilosophyCardContent' => 'HTMLText',
     'ClassesCardHeading' => 'Varchar(128)',
@@ -23,7 +24,8 @@ class HomePage extends WebAppPage {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.Main', TextField::create('Welcome', 'Welcome'));
+    $fields->addFieldToTab('Root.Main', TextField::create('Heading1', 'Main Header'));
+    $fields->addFieldToTab('Root.Main', TextField::create('Heading2', 'Sub Header'));
 
     $fields->addFieldToTab('Root.CarouselImages', UploadField::create('carouselImages', 'Carousel Images'));
 
