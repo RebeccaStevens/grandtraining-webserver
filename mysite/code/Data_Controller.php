@@ -36,7 +36,7 @@ class Data_Controller extends Controller {
 
     $pages = array();
     foreach (WebAppPage::get() as $key => $page) {
-      $pages[$page->URLSegment] = array(
+      $pages[$page->WebAppPageName] = array(
         'tilte' => $page->Title,
         'menuTitle' => $page->MenuTitle,
         'url' => $page->Link()

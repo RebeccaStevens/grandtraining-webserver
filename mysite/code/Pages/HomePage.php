@@ -1,5 +1,6 @@
 <?php
 class HomePage extends WebAppPage {
+  public $WebAppPageName = 'home';
   private static $can_be_root = true;
   private static $allowed_children = array();
 
