@@ -2,12 +2,48 @@
 class Testimonial extends DataObject {
 
   private static $db = array(
+    'SortOrder' => 'Int',
+    'Shown' => 'Boolean',
     'Author' => 'Varchar(128)',
     "DateWritten" => "Date",
-    "Content" => "Text"
+    "Content" => "HTMLText"
   );
 
   private static $has_one = array(
     'Page' => 'HomePage'
   );
+
+  private static $summary_fields = array(
+    'DateWritten.Nice' => 'DateWritten',
+    'Author' => 'Author',
+    'Shown.Nice' => 'Show This Testimonial?'
+  );
+
+  private static $searchable_fields = array(
+    'Author',
+    'DateWritten',
+    'Content'
+  );
+
+  public function getCMSFields() {
+    $fields = FieldList::create(TabSet::create('Root'));
+
+    $fields->addFieldToTab('Root.Main', TextField::create('Author', 'Author'));
+
+    $dateField = DateField::create('DateWritten', 'Date Written')
+      ->setConfig('dateformat', 'd/M/yyyy')
+      ->setConfig('max', date('c'));
+    $dateField->setDescription(sprintf(
+			_t('FormField.Example', 'e.g. %s', 'Example format'),
+			Convert::raw2xml(Zend_Date::now()->toString($dateField->getConfig('dateformat')))
+		));
+		$dateField->setAttribute('placeholder', $dateField->getConfig('dateformat'));
+    $fields->addFieldToTab('Root.Main', $dateField);
+
+    $fields->addFieldToTab('Root.Main', CheckboxSetField::create('Shown', 'Shown', array('1' => '')));
+
+    $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content', 'Testimonial'));
+
+    return $fields;
+  }
 }

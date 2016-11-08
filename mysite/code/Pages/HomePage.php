@@ -27,16 +27,16 @@ class HomePage extends WebAppPage {
 
     $fields->addFieldToTab('Root.CarouselImages', UploadField::create('carouselImages', 'Carousel Images'));
 
-    $fields->addFieldToTab('Root.Cards', TextField::create('PhilosophyCardHeading', 'Philosophy Card\'s Heading'));
-    $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('PhilosophyCardContent', 'Philosophy Card\'s Content'));
-    $editorField->setRows(10);
+    $fields->addFieldToTab('Root.Philosophy', TextField::create('PhilosophyCardHeading', 'Card\'s Heading'));
+    $fields->addFieldToTab('Root.Philosophy', $editorField = HTMLEditorField::create('PhilosophyCardContent', 'Card\'s Content'));
+    $editorField->setRows(15);
 
-    $fields->addFieldToTab('Root.Cards', TextField::create('ClassesCardHeading', 'Classes Card\'s Heading'));
-    $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('ClassesCardContent', 'Classes Card\'s Content'));
-    $editorField->setRows(10);
+    $fields->addFieldToTab('Root.Classes', TextField::create('ClassesCardHeading', 'Card\'s Heading'));
+    $fields->addFieldToTab('Root.Classes', $editorField = HTMLEditorField::create('ClassesCardContent', 'Card\'s Content'));
+    $editorField->setRows(15);
 
-    $fields->addFieldToTab('Root.Cards', TextField::create('TestimonialsCardHeading', 'Testimonials Card\'s Heading'));
-    // $fields->addFieldToTab('Root.Cards', GridField::create('Testimonials', 'Testimonials'));
+    $fields->addFieldToTab('Root.Testimonials', TextField::create('TestimonialsCardHeading', 'Card\'s Heading'));
+    $fields->addFieldToTab('Root.Testimonials', GridField::create('Testimonials', 'Testimonials', $this->Testimonials(), GridFieldConfig_RecordEditor::create()->addComponent(new GridFieldOrderableRows('SortOrder'))));
 
     return $fields;
   }

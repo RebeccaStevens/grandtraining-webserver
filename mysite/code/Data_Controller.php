@@ -102,9 +102,9 @@ class Data_Controller extends Controller {
     );
     foreach ($homePage->Testimonials() as $key => $testimonial) {
       $testimonials['list'][] = array(
-        'by' => $testimonial->by,
-        'date' => $testimonial->date,
-        'content' => $testimonial->content
+        'by' => $testimonial->Author,
+        'date' => $testimonial->DateWritten,
+        'content' => $testimonial->Content
       );
     }
 
