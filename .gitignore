@@ -17,7 +17,7 @@ cms
 assets
 reports
 siteconfig
-silverstripe-gridfieldextensions
+gridfieldextensions
 silverstripe-cache
 silverstripe.log
 
