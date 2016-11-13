@@ -1,5 +1,5 @@
 <?php
-class Testimonial extends DataObject {
+class Testimonial extends DataObjectClient {
 
   private static $db = array(
     'SortOrder' => 'Int',
@@ -26,7 +26,7 @@ class Testimonial extends DataObject {
   );
 
   public function getCMSFields() {
-    $fields = FieldList::create(TabSet::create('Root'));
+    $fields = parent::getCMSFields();
 
     $fields->addFieldToTab('Root.Main', TextField::create('Author', 'Author'));
 

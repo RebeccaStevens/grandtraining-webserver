@@ -1,5 +1,5 @@
 <?php
-class HolidayClass extends DataObject {
+class HolidayClass extends DataObjectClient {
 
   private static $db = array(
     'Title' => 'Varchar(128)',
@@ -42,7 +42,7 @@ class HolidayClass extends DataObject {
   );
 
   public function getCMSFields() {
-    $fields = FieldList::create(TabSet::create('Root'));
+    $fields = parent::getCMSFields();
     $fields->addFieldsToTab('Root.Main', array(
       UploadField::create('Banner', 'Banner Image'),
       TextField::create('Title', 'Title'),

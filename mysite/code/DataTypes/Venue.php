@@ -1,5 +1,5 @@
 <?php
-class Venue extends DataObject {
+class Venue extends DataObjectClient {
 
   private static $db = array(
     'City' => 'Varchar(100)',
@@ -30,7 +30,7 @@ class Venue extends DataObject {
   );
 
   public function getCMSFields() {
-    $fields = FieldList::create(TabSet::create('Root'));
+    $fields = parent::getCMSFields();
     $fields->addFieldsToTab('Root.Main', array(
       TextField::create('City', 'City'),
       TextField::create('Name', 'Short Venue Name'),

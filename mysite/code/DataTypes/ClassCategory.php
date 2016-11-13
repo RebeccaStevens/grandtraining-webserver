@@ -1,5 +1,5 @@
 <?php
-class ClassCategory extends DataObject {
+class ClassCategory extends DataObjectClient {
 
   private static $db = array(
     'Name' => 'Varchar(128)',
@@ -20,7 +20,7 @@ class ClassCategory extends DataObject {
   );
 
   public function getCMSFields() {
-    $fields = FieldList::create(TabSet::create('Root'));
+    $fields = parent::getCMSFields();
 
     $fields->addFieldToTab('Root.Cards', TextField::create('Name', 'Category Name'));
 

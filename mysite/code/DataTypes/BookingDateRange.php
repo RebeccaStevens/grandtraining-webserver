@@ -1,5 +1,5 @@
 <?php
-class BookingDateRange extends DataObject {
+class BookingDateRange extends DataObjectClient {
 
   private static $db = array(
     'StartDate' => 'Date',
