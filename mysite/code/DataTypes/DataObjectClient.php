@@ -5,35 +5,51 @@
 class DataObjectClient extends DataObject {
 
   /**
-	 * Ensures that a blank base record exists with the basic fixed fields for this dataobject
-	 *
-	 * Does nothing if an ID is already assigned for this record
-	 *
-	 * @param string $baseTable Base table
-	 * @param string $now Timestamp to use for the current time
-	 */
-	protected function writeBaseRecord($baseTable, $now) {
-		// Generate new ID if not specified
-		if($this->isInDB()) return;
+   * Ensures that a blank base record exists with the basic fixed fields for this dataobject
+   *
+   * Does nothing if an ID is already assigned for this record
+   *
+   * @param string $baseTable Base table
+   * @param string $now Timestamp to use for the current time
+   */
+  protected function writeBaseRecord($baseTable, $now) {
+    // Generate new ID if not specified
+    if($this->isInDB()) {
+      return;
+    }
 
-    $maxInsertAttempts = 10;
+    $maxInsertAttempts = 1000;
 
-    for ($i = 0; $i < $maxInsertAttempts; $i++) {
-      $randID = rand(1, PHP_INT_MAX);                 // generate a random id
+    $attempts = 0;
+    while ($attempts < $maxInsertAttempts) {
+      $attempts++;
+      $randID = rand(1, PHP_INT_MAX);     // generate a random id
 
-  		// Perform an insert on the base table
-  		$insert = new SQLInsert('"'.$baseTable.'"');
-  		$result = $insert
-        ->assign('"ID"', $randID)
-  			->assign('"Created"', $now)
-  			->execute();
-      if ($result->first()) {
+      // check for profanities in the encoded version of this id
+      if (self::containsProfanity(self::toBase($randID))) {
+        continue;
+      }
+
+      try {
+        // Perform an insert on the base table
+        $insert = new SQLInsert('"' . $baseTable . '"');
+        $insert
+          ->assign('"ID"', $randID)
+          ->assign('"Created"', $now)
+          ->execute();
         break;
+      } catch (SS_DatabaseException $e) {
+        continue;
       }
     }
-    $this->changed['ID'] = self::CHANGE_VALUE;
-    $this->record['ID'] = DB::get_generated_id($baseTable);
-	}
+
+    if ($attempts <= $maxInsertAttempts) {
+      $this->changed['ID'] = self::CHANGE_VALUE;
+      $this->record['ID'] = DB::get_generated_id($baseTable);
+    } else {
+      error_log('Unable to insert a ' . get_class($this) . ' into the database (attempts: ' . $attempts . ')');
+    }
+  }
 
   /**
    * Get the ID of this Object formatted to be given to a client.
