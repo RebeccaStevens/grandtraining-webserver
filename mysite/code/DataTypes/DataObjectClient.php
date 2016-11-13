@@ -89,4 +89,29 @@ class DataObjectClient extends DataObject {
     }
     return $res;
   }
+
+  /**
+   * Check if the given text contains profanities.
+   *
+   * @return $boolean
+   */
+  private static function containsProfanity($text) {
+    $result = file_get_contents('http://www.purgomalum.com/service/containsprofanity?text=' . urlencode($text));
+    if ($result === 'true') {
+      return true;
+    }
+    if ($result === 'false') {
+      return false;
+    }
+
+    // if file fails to load
+    if ($result === false) {
+      error_log('Unable to check for profanity in "' . $text . '", failed to connect to www.purgomalum.com');
+    }
+    // or a unknown response is given
+    else {
+      error_log('Unknown response received for profanity check of "' . $text . '" from www.purgomalum.com');
+    }
+    return false;
+  }
 }
