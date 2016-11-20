@@ -4,6 +4,8 @@
  */
 class DataObjectClient extends DataObject {
 
+  private static $_base64Alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_';
+
   /**
    * Ensures that a blank base record exists with the basic fixed fields for this dataobject
    *
@@ -26,23 +28,24 @@ class DataObjectClient extends DataObject {
       $randID = rand(1, PHP_INT_MAX);     // generate a random id
 
       // check for profanities in the encoded version of this id
-      if (self::containsProfanity(self::toBase($randID))) {
+      if (self::containsProfanity($randID)) {
         continue;
       }
 
       try {
-        // Perform an insert on the base table
+        // Try and perform an insert on the base table
         $insert = new SQLInsert('"' . $baseTable . '"');
         $insert
           ->assign('"ID"', $randID)
           ->assign('"Created"', $now)
           ->execute();
-        break;
+        break;    // if successful, no need to try again
       } catch (SS_DatabaseException $e) {
-        continue;
+        continue; // if unsuccessful, try again
       }
     }
 
+    // if the data object was successful inserted
     if ($attempts <= $maxInsertAttempts) {
       $this->changed['ID'] = self::CHANGE_VALUE;
       $this->record['ID'] = DB::get_generated_id($baseTable);
@@ -52,56 +55,50 @@ class DataObjectClient extends DataObject {
   }
 
   /**
-   * Get the ID of this Object formatted to be given to a client.
-   *
-   * @return string
+   * Get the ID of this object formatted to be displayed by the client.
    */
-  public function GetBase64ID() {
-    return self::toBase($this->ID);
+  public function ClientFormattedID() {
+    return self::integerToBase64($this->ID);
   }
 
   public function getCMSFields() {
     $fields = FieldList::create(TabSet::create('Root'));
 
     if ($this->isInDB()) {
-      $fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Formatted ID', $this->GetBase64ID()));
+      $fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Client Formatted ID', $this->ClientFormattedID()));
     }
 
     return $fields;
   }
 
-  private static $_base = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_';
-
   /**
-   * Get a string representation of the given integer in base X,
-   * where X is the length of self::$_base.
+   * Get a base 64 string representation of the given integer.
    *
    * @param integer $num
    * @return string
    */
-  public static function toBase($num) {
-    $b = strlen(self::$_base);
+  public static function integerToBase64($num) {
+    $b = strlen(self::$_base64Alphabet);
     $r = $num % $b;
-    $res = self::$_base[$r];
+    $res = self::$_base64Alphabet[$r];
     $q = floor($num / $b);
     while ($q) {
       $r = $q % $b;
       $q = floor($q / $b);
-      $res = self::$_base[$r] . $res;
+      $res = self::$_base64Alphabet[$r] . $res;
     }
     return $res;
   }
 
   /**
-   * Get a number from the string representation of a number in base X,
-   * where X is the length of self::$_base.
+   * Get a integer from the string representation of a number in base 64.
    */
-  public static function fromBase($num) {
-    $b = strlen(self::$_base);
+  public static function integerFromBase64($num) {
+    $b = strlen(self::$_base64Alphabet);
     $limit = strlen($num);
-    $res = strpos(self::$_base, $num[0]);
+    $res = strpos(self::$_base64Alphabet, $num[0]);
     for ($i = 1; $i < $limit; $i++) {
-      $res = $b * $res + strpos(self::$_base, $num[$i]);
+      $res = $b * $res + strpos(self::$_base64Alphabet, $num[$i]);
     }
     return $res;
   }
