@@ -45,14 +45,14 @@ class Data_Controller extends Controller {
 
     $cities = array();
     foreach (Venue::get() as $key => $venue) {
-      if (!array_key_exists($venue->city, $cities)) {
-        $cities[$venue->city] = array();
+      if (!array_key_exists($venue->City, $cities)) {
+        $cities[$venue->City] = array();
       }
-      $cities[$venue->city][$venue->ID] = array(
-        'id' => $venue->ID,
+      $cities[$venue->City][$venue->ClientFormattedID()] = array(
+        'id' => $venue->GetBase64ID(),
         'city' => $venue->City,
         'name' => $venue->Name,
-        'fullname' => $venue->Fullname,
+        'fullname' => $venue->FullName,
       );
     }
 

@@ -4,7 +4,7 @@ class Venue extends DataObjectClient {
   private static $db = array(
     'City' => 'Varchar(100)',
     'Name' => 'Varchar(100)',
-    'Fullname' => 'Varchar(256)',
+    'FullName' => 'Varchar(256)',
     'Address' => 'Varchar(256)',
     'ContactNumber' => 'Varchar',
     'EmailAddress' => 'Varchar(256)',
@@ -14,7 +14,7 @@ class Venue extends DataObjectClient {
   );
 
   private static $summary_fields = array(
-    'Fullname' => 'Full Venue Name',
+    'FullName' => 'Full Venue Name',
     'City' => 'City',
     'Name' => 'Short Venue Name',
     'ContactNumber' => 'Contact Number',
@@ -24,7 +24,7 @@ class Venue extends DataObjectClient {
   private static $searchable_fields = array(
     'City',
     'Name',
-    'Fullname',
+    'FullName',
     'ContactNumber',
     'EmailAddress'
   );
@@ -34,7 +34,7 @@ class Venue extends DataObjectClient {
     $fields->addFieldsToTab('Root.Main', array(
       TextField::create('City', 'City'),
       TextField::create('Name', 'Short Venue Name'),
-      TextField::create('Fullname', 'Full Venue Name'),
+      TextField::create('FullName', 'Full Venue Name'),
       TextareaField::create('Address', 'Address'),
       PhoneNumberField::create('ContactNumber', 'Contact Number'),
       EmailField::create('Email', 'Email'),
