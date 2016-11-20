@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "8162f1d0b2ddf87d7223040061cf7cd8",
-    "content-hash": "cfb5ccd551b393a89dc089495eeac190",
+    "hash": "5d0f93f17558691b7afcb8fe7411f4a9",
+    "content-hash": "05488378d26443755dfad5bfdadd0106",
     "packages": [
         {
             "name": "composer/installers",
@@ -113,6 +113,46 @@
                 "zikula"
             ],
             "time": "2016-08-13 20:53:52"
+        },
+        {
+            "name": "johngrogg/ics-parser",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/u01jmg3/ics-parser.git",
+                "reference": "6085a18242eaf98e6586e3defa7705fa207847ac"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/u01jmg3/ics-parser/zipball/6085a18242eaf98e6586e3defa7705fa207847ac",
+                "reference": "6085a18242eaf98e6586e3defa7705fa207847ac",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "class.iCalReader.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Martin Thoma",
+                    "email": "info@martin-thoma.de",
+                    "role": "Original Developer"
+                },
+                {
+                    "name": "John Grogg",
+                    "email": "john.grogg@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Ics file parser",
+            "keywords": [
+                "ical",
+                "ics"
+            ],
+            "time": "2016-03-16 13:31:55"
         },
         {
             "name": "silverstripe-australia/gridfieldextensions",
@@ -251,6 +291,50 @@
                 "silverstripe"
             ],
             "time": "2016-08-15 06:27:31"
+        },
+        {
+            "name": "silverstripe/event-calendar",
+            "version": "1.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unclecheese/silverstripe-event-calendar.git",
+                "reference": "7fda123a945246881f87d5511180432873d43c53"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unclecheese/silverstripe-event-calendar/zipball/7fda123a945246881f87d5511180432873d43c53",
+                "reference": "7fda123a945246881f87d5511180432873d43c53",
+                "shasum": ""
+            },
+            "require": {
+                "johngrogg/ics-parser": "1.0.3",
+                "php": ">=5.3.2",
+                "silverstripe/cms": ">=3.1",
+                "silverstripe/framework": ">=3.1"
+            },
+            "replace": {
+                "silverstripe/event-calendar": "*"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "event_calendar"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Aaron Carlino",
+                    "homepage": "http://leftandmain.com"
+                }
+            ],
+            "description": "Event Calendar for the SilverStripe CMS",
+            "keywords": [
+                "events",
+                "silverstripe"
+            ],
+            "time": "2016-10-26 06:07:50"
         },
         {
             "name": "silverstripe/framework",
