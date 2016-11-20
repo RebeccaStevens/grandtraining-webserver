@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "757f74d9577b6b54108960722e994c38",
-    "content-hash": "8846b33632c8c7bd3c6e9ff67640951c",
+    "hash": "8162f1d0b2ddf87d7223040061cf7cd8",
+    "content-hash": "cfb5ccd551b393a89dc089495eeac190",
     "packages": [
         {
             "name": "composer/installers",
@@ -421,6 +421,96 @@
                 "silverstripe"
             ],
             "time": "2016-09-16 00:03:03"
+        },
+        {
+            "name": "unclecheese/dropzone",
+            "version": "1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unclecheese/silverstripe-dropzone.git",
+                "reference": "801d1402d01c52c6f5493d50ebb9d78754824a1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unclecheese/silverstripe-dropzone/zipball/801d1402d01c52c6f5493d50ebb9d78754824a1e",
+                "reference": "801d1402d01c52c6f5493d50ebb9d78754824a1e",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/framework": "3.*"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "dropzone"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Uncle Cheese",
+                    "email": "unclecheese@leftandmain.com"
+                }
+            ],
+            "description": "An HTML5 upload field for the CMS and frontend forms.",
+            "keywords": [
+                "Forms",
+                "cms",
+                "files",
+                "silverstripe",
+                "upload",
+                "uploader"
+            ],
+            "time": "2016-09-05 07:06:48"
+        },
+        {
+            "name": "unclecheese/silverstripe-kickassets",
+            "version": "3.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/unclecheese/silverstripe-kickassets.git",
+                "reference": "83fa7ad124595aaa0cf79da83ffadf27d31c01b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/unclecheese/silverstripe-kickassets/zipball/83fa7ad124595aaa0cf79da83ffadf27d31c01b4",
+                "reference": "83fa7ad124595aaa0cf79da83ffadf27d31c01b4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "silverstripe/cms": ">= 3.1.0",
+                "silverstripe/framework": ">= 3.1.0",
+                "unclecheese/dropzone": "1.2.*"
+            },
+            "replace": {
+                "silverstripe/kickassets": "*",
+                "unclecheese/kickassets": "*"
+            },
+            "type": "silverstripe-module",
+            "extra": {
+                "installer-name": "kickassets"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Uncle Cheese",
+                    "email": "unclecheese@leftandmain.com"
+                }
+            ],
+            "description": "Provides an alternative file management interface for SilverStripe CMS with drag-and-drop, multi-selection, and several other desktop-like UI conventions.",
+            "keywords": [
+                "AssetAdmin",
+                "assets",
+                "files",
+                "silverstripe",
+                "upload"
+            ],
+            "time": "2016-11-16 21:02:29"
         }
     ],
     "packages-dev": [
