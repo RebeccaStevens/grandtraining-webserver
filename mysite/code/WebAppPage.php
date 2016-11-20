@@ -3,6 +3,14 @@ class WebAppPage extends SiteTree {
 
 	public $WebAppPageName = null;
 
+  /**
+   * This is an abstract class.
+   * It cannot be craeted.
+   */
+  public function canCreate() {
+    return false;
+  }
+
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
