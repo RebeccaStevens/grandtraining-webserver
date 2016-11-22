@@ -14,5 +14,5 @@ class ClassesPage extends WebAppPage {
 }
 
 class ClassesPage_Controller extends WebAppPage_Controller {
-
+  private static $url_handlers = array('$Course' => 'handleIndex');
 }
