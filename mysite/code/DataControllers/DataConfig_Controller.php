@@ -38,7 +38,7 @@ class DataConfig_Controller extends Data_Controller {
         $cities[$venue->City] = array();
       }
       $cities[$venue->City][$venue->ClientFormattedID()] = array(
-        'id' => $venue->GetBase64ID(),
+        'id' => $venue->ClientFormattedID(),
         'city' => $venue->City,
         'name' => $venue->Name,
         'fullname' => $venue->FullName,
