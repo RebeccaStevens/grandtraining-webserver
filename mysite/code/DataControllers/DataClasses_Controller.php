@@ -18,14 +18,20 @@ class DataClasses_Controller extends Data_Controller {
       return;
     }
 
+    $holidayClasses = HolidayClass::get();
+
     $categories = array();
     foreach (ClassCategory::get() as $category) {
       $sizedImage = $category->CategoryImage()->Fill(250, 250);
 
       $locationsAvailable = array();
-      foreach (Venue::get() as $venue) {
-        $locationsAvailable[] = $venue->ClientFormattedID();
+      $locationsAvailableMap = array();
+      foreach ($holidayClasses as $hc) {
+        foreach ($hc->AvailableVenues() as $hcVenue) {
+          $locationsAvailableMap[$hcVenue->ClientFormattedID()] = true;
+        }
       }
+      $locationsAvailable = array_keys($locationsAvailableMap);
 
       $categories[] = array(
         name => $category->Name,
@@ -69,20 +75,24 @@ class DataClasses_Controller extends Data_Controller {
 
     $classes = array();
     foreach (HolidayClass::get() as $class) {
-      $sizedImage = $class->Banner()->Fill(700, 140);
+      foreach ($class->AvailableVenues() as $classVenue) {
+        if ($classVenue->ID === $venue->ID) {
+          $sizedImage = $class->Banner()->Fill(700, 140);
 
-      $classes[] = array(
-        title => $class->Title,
-        level => $class->Level,
-        image => array(
-          src => $sizedImage->URL,
-          placeholder => $this->getPlaceholderImage($sizedImage)
-        ),
-        'min-age' => $class->MinAge,
-        'max-age' => $class->MaxAge,
-        description => $class->Description,
-        dates => array()
-      );
+          $classes[] = array(
+            title => $class->Title,
+            level => $class->Level,
+            image => array(
+              src => $sizedImage->URL,
+              placeholder => $this->getPlaceholderImage($sizedImage)
+            ),
+            'min-age' => $class->MinAge,
+            'max-age' => $class->MaxAge,
+            description => $class->Description,
+            dates => array()
+          );
+        }
+      }
     }
 
     $this->echoJson(array(
