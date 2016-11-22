@@ -13,6 +13,10 @@ class Venue extends DataObjectClient {
     'Longitude' => 'Float'
   );
 
+  private static $belongs_many_many = array(
+    'AvailableHolidayClasses' => 'HolidayClass'
+  );
+
   private static $summary_fields = array(
     'FullName' => 'Full Venue Name',
     'City' => 'City',
