@@ -22,14 +22,14 @@ class ClassCategory extends DataObjectClient {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.Cards', TextField::create('Name', 'Category Name'));
+    $fields->addFieldToTab('Root.Main', TextField::create('Name', 'Category Name'));
 
-    $fields->addFieldToTab('Root.Cards', UploadField::create('CategoryImage', 'Category Image'));
+    $fields->addFieldToTab('Root.Main', UploadField::create('CategoryImage', 'Category Image'));
 
-    $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('Teaser', 'Teaser'));
+    $fields->addFieldToTab('Root.Main', $editorField = HTMLEditorField::create('Teaser', 'Teaser'));
     $editorField->setRows(10);
 
-    $fields->addFieldToTab('Root.Cards', $editorField = HTMLEditorField::create('Description', 'Description'));
+    $fields->addFieldToTab('Root.Main', $editorField = HTMLEditorField::create('Description', 'Description'));
     $editorField->setRows(25);
 
     return $fields;
