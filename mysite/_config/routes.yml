@@ -4,4 +4,5 @@ After: framework/routes#coreroutes
 ---
 Director:
   rules:
-    'data//$A/$B/$C/$D/$E': Data_Controller
+    'data/config.json': DataConfig_Controller
+    'data/home.json': DataHome_Controller
