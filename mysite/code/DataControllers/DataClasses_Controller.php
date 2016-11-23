@@ -38,7 +38,7 @@ class DataClasses_Controller extends Data_Controller {
       $locationsAvailable = array_keys($locationsAvailableMap);
 
       $categories[] = array(
-        name => $category->Title,
+        name => $category->MenuTitle,
         url => $category->URLSegment,
         teaser => $category->Teaser,
         image => array(
