@@ -7,4 +7,4 @@ Director:
     'data/config.json': DataConfig_Controller
     'data/home.json': DataHome_Controller
     'data/classes.json': DataClasses_Controller
-    'data/classes//$VenueID/$ClassCategory!': DataClasses_Controller
+    'data/classes//$VenueID/$ClassCategoryPage!': DataClasses_Controller

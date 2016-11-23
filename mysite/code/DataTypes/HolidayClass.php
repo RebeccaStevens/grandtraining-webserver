@@ -22,7 +22,7 @@ class HolidayClass extends DataObjectClient {
   );
 
   private static $belongs_many_many = array(
-    'ClassCategories' => 'ClassCategory'
+    'ClassCategories' => 'ClassCategoryPage'
   );
 
   private static $defaults = array(
@@ -48,7 +48,7 @@ class HolidayClass extends DataObjectClient {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $categories = ListboxField::create('ClassCategories', 'Class Categories')->setMultiple(true)->setSource(ClassCategory::get()->map('ID', 'Name')->toArray());
+    $categories = ListboxField::create('ClassCategories', 'Class Categories')->setMultiple(true)->setSource(ClassCategoryPage::get()->map('ID', 'Title')->toArray());
     $categories->setDescription('The categories this class should be shown in.');
 
     $availableVenues = ListboxField::create('AvailableVenues', 'Available Venues')->setMultiple(true)->setSource(Venue::get()->map('ID', 'FullName')->toArray());

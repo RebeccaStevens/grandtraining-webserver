@@ -6,7 +6,6 @@ class ClassesAdmin extends ModelAdmin {
   private static $url_segment = 'classes';
 
   private static $managed_models = array(
-    'ClassCategory',
     'HolidayClass'
   );
 
