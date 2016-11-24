@@ -49,6 +49,15 @@ class DataConfig_Controller extends Data_Controller {
       'company' => $company,
       'pages' => $pages,
       'cities' => $cities,
+      'api-configs' => array(
+        'map-config' => array(
+          'api-key' => $siteConfig->GoogleMapsApiKey,
+          'zoom' => $siteConfig->GoogleMapsZoom
+        ),
+        'recaptcha-config' => array(
+          'api-key' => $siteConfig->RecaptchaApiKey,
+        )
+      ),
       'links' => array(
         'bookclass' => "/bookings/booknow/bookclass"
       ),
