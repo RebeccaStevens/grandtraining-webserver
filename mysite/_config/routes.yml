@@ -8,3 +8,4 @@ Director:
     'data/home.json': DataHome_Controller
     'data/classes.json': DataClasses_Controller
     'data/classes//$VenueID/$ClassCategoryPage!': DataClasses_Controller
+    'data/faq.json': DataFAQ_Controller
