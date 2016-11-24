@@ -9,3 +9,4 @@ Director:
     'data/classes.json': DataClasses_Controller
     'data/classes//$VenueID/$ClassCategoryPage!': DataClasses_Controller
     'data/faq.json': DataFAQ_Controller
+    'data/about-us.json': DataAboutUs_Controller
