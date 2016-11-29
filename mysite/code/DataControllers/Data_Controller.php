@@ -11,6 +11,9 @@ abstract class Data_Controller extends Controller {
    * @param mixed $data The data to encode as json
    */
   protected function echoJson($data) {
+    if (Director::isDev()) {
+      $this->response->addHeader('Access-Control-Allow-Origin', '*');
+    }
     $this->response->addHeader('Content-Type', 'application/json');
     echo json_encode($data);
   }
