@@ -14,10 +14,10 @@ class WebAppPage extends SiteTree {
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 
-		$fields->addFieldToTab('Root.Content.Main', ReadonlyField::create(null, 'Web App Page Name', $this->WebAppPageName), 'Title');
+		$fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Web App Page Name', $this->WebAppPageName), 'Title');
 
-		$fields->removeFieldFromTab('Root.Content.Main', 'Content');
-		$fields->removeFieldFromTab('Root.Content.Main', 'Metadata');
+		$fields->removeFieldFromTab('Root.Main', 'Content');
+		$fields->removeFieldFromTab('Root.Main', 'Metadata');
 
     return $fields;
   }
