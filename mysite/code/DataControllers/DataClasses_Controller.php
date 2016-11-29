@@ -38,14 +38,14 @@ class DataClasses_Controller extends Data_Controller {
       $locationsAvailable = array_keys($locationsAvailableMap);
 
       $categories[] = array(
-        name => $category->MenuTitle,
-        url => $category->URLSegment,
-        teaser => $category->Teaser,
-        image => array(
-          src => $sizedImage->URL,
-          placeholder => $this->getPlaceholderImage($sizedImage)
+        'name' => $category->MenuTitle,
+        'url' => $category->URLSegment,
+        'teaser' => $category->Teaser,
+        'image' => array(
+          'src' => $sizedImage->URL,
+          'placeholder' => $this->getPlaceholderImage($sizedImage)
         ),
-        locationsAvailable => $locationsAvailable
+        'locationsAvailable' => $locationsAvailable
       );
     }
 
@@ -84,16 +84,16 @@ class DataClasses_Controller extends Data_Controller {
               $sizedImage = $class->Banner()->Fill(700, 140);
 
               $classes[] = array(
-                title => $class->Title,
-                level => $class->Level,
-                image => array(
-                  src => $sizedImage->URL,
-                  placeholder => $this->getPlaceholderImage($sizedImage)
+                'title' => $class->Title,
+                'level' => $class->Level,
+                'image' => array(
+                  'src' => $sizedImage->URL,
+                  'placeholder' => $this->getPlaceholderImage($sizedImage)
                 ),
                 'min-age' => $class->MinAge,
                 'max-age' => $class->MaxAge,
-                description => $class->Description,
-                dates => array()
+                'description' => $class->Description,
+                'dates' => array()
               );
               $finishedWithThisClass = true;
               break;
