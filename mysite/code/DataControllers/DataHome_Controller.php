@@ -18,7 +18,7 @@ class DataHome_Controller extends Data_Controller {
     foreach ($homePage->CarouselImages() as $key => $image) {
       $sizedImage = $image->SetWidth(1920);
       $carouselImages[] = array(
-        'src' => $sizedImage->URL,
+        'src' => $sizedImage->AbsoluteLink(),
         'placeholder' => $this->getPlaceholderImage($sizedImage)
       );
     }

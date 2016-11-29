@@ -61,7 +61,7 @@ abstract class Data_Controller extends Controller {
     $width = round($width);
     $height = round($height);
 
-    return $this->base64encodeImage($image->SetSize($width, $height)->URL);
+    return $this->base64encodeImage($image->SetSize($width, $height)->Link());
   }
 
   /**

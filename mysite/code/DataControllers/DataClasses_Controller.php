@@ -42,7 +42,7 @@ class DataClasses_Controller extends Data_Controller {
         'url' => $category->URLSegment,
         'teaser' => $category->Teaser,
         'image' => array(
-          'src' => $sizedImage->URL,
+          'src' => $sizedImage->AbsoluteLink(),
           'placeholder' => $this->getPlaceholderImage($sizedImage)
         ),
         'locationsAvailable' => $locationsAvailable
@@ -87,7 +87,7 @@ class DataClasses_Controller extends Data_Controller {
                 'title' => $class->Title,
                 'level' => $class->Level,
                 'image' => array(
-                  'src' => $sizedImage->URL,
+                  'src' => $sizedImage->AbsoluteLink(),
                   'placeholder' => $this->getPlaceholderImage($sizedImage)
                 ),
                 'min-age' => $class->MinAge,
