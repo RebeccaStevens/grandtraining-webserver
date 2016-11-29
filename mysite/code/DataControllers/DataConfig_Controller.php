@@ -17,10 +17,7 @@ class DataConfig_Controller extends Data_Controller {
     $company = array(
       'name' => $siteConfig->Title,
       'slogan' => $siteConfig->Tagline,
-      'logo' => array(
-        'src' => $siteConfig->Logo()->AbsoluteLink(),
-        'placeholder' => $this->getPlaceholderImage($siteConfig->Logo())
-      )
+      'logo' => $this->getImageData($siteConfig->Logo())
     );
 
     $pages = array();

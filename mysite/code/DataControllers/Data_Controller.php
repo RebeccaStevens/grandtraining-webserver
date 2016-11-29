@@ -34,6 +34,25 @@ abstract class Data_Controller extends Controller {
   }
 
   /**
+   * Get the image data for the client.
+   *
+   * @param Image $image The image to get the data for
+   * @return Array
+   */
+  protected function getImageData(Image $image = null) {
+    if ($image === null) {
+      return array(
+        'src' => null,
+        'placeholder' => null
+      );
+    }
+    return array(
+      'src' => $image->AbsoluteLink(),
+      'placeholder' => $this->getPlaceholderImage($image)
+    );
+  }
+
+  /**
    * Get a base64 encoded placeholder image.
    *
    * @param Image $image The image to get a placeholder for
