@@ -41,7 +41,7 @@ class Venue extends DataObjectClient {
       TextField::create('FullName', 'Full Venue Name'),
       TextareaField::create('Address', 'Address'),
       PhoneNumberField::create('ContactNumber', 'Contact Number'),
-      EmailField::create('Email', 'Email'),
+      EmailField::create('EmailAddress', 'Email'),
       TextField::create('Notes', 'Notes'),
       NumericField::create('Latitude', 'Latitude'),
       NumericField::create('Longitude', 'Longitude')
