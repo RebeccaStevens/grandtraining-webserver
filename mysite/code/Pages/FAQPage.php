@@ -11,7 +11,7 @@ class FAQPage extends WebAppPage {
   /**
    * Only allow one instance of this page type.
    */
-  public function canCreate() {
+  public function canCreate($member = null) {
     return DataObject::get(__CLASS__)->count() === 0;
   }
 

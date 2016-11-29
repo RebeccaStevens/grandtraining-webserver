@@ -1,7 +1,7 @@
 <?php
 class Page extends SiteTree {
 
-  public function canCreate() {
+  public function canCreate($member = null) {
     return true;
   }
 }

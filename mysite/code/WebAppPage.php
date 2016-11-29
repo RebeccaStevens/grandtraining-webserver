@@ -7,7 +7,7 @@ class WebAppPage extends SiteTree {
    * This is an abstract class.
    * It cannot be craeted.
    */
-  public function canCreate() {
+  public function canCreate($member = null) {
     return false;
   }
 

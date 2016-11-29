@@ -4,7 +4,7 @@ class ClassCategoryPage extends WebAppSubPage {
   private static $can_be_root = false;
   private static $allowed_children = array();
 
-  public function canCreate() {
+  public function canCreate($member = null) {
     return true;
   }
 
