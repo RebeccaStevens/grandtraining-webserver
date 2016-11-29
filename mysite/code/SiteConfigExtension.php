@@ -14,24 +14,25 @@ class SiteConfigExtension extends DataExtension {
   );
 
   public function updateCMSFields(FieldList $fields) {
+    $fields->removeFieldFromTab('Root.Main', 'Theme');
+
     $fields->insertBefore(new Tab('Social', 'Social Media'), 'Access');
-    $fields->insertBefore(new Tab('APIKeys', 'API Keys'), 'Access');
+    $fields->insertBefore(new TabSet('3rdParty', '3rd Party'), 'Access');
 
     $fields->addFieldsToTab('Root.Main', UploadField::create('Logo', 'Logo'));
-
-    $fields->addFieldToTab('Root.Main', NumericField::create('GoogleMapsZoom', 'Google Maps Zoom Level'));
 
     $fields->addFieldsToTab('Root.Social', array(
       TextField::create('FacebookLink', 'Facebook')
     ));
 
-    $fields->addFieldsToTab('Root.APIKeys', array(
-      TextField::create('GoogleMapsApiKey', 'Google Maps API Key'),
-      TextField::create('RecaptchaApiSiteKey', 'Recaptcha API Site Key'),
-      TextField::create('RecaptchaApiSecretKey', 'Recaptcha API Secret Key'),
+    $fields->addFieldsToTab('Root.3rdParty.GoogleMaps', array(
+      TextField::create('GoogleMapsApiKey', 'API Key'),
+      NumericField::create('GoogleMapsZoom', 'Default Zoom Level')
     ));
-
-    $fields->removeFieldFromTab('Root.Main', 'Theme');
+    $fields->addFieldsToTab('Root.3rdParty.Recaptcha', array(
+      TextField::create('RecaptchaApiSiteKey', 'API Site Key'),
+      TextField::create('RecaptchaApiSecretKey', 'API Secret Key')
+    ));
   }
 
 }
