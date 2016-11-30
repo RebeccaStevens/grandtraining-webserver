@@ -5,8 +5,8 @@ class Testimonial extends DataObjectClient {
     'SortOrder' => 'Int',
     'Shown' => 'Boolean',
     'Author' => 'Varchar(128)',
-    "DateWritten" => "Date",
-    "Content" => "HTMLText"
+    'DateWritten' => 'Date',
+    'Content' => 'HTMLText'
   );
 
   private static $has_one = array(
