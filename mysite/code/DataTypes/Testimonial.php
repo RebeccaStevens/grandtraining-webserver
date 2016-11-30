@@ -14,7 +14,7 @@ class Testimonial extends DataObjectClient {
   );
 
   private static $summary_fields = array(
-    'DateWritten.Nice' => 'DateWritten',
+    'DateWritten.Nice' => 'Date Written',
     'Author' => 'Author',
     'Shown.Nice' => 'Show This Testimonial?'
   );
