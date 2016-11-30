@@ -109,7 +109,7 @@ class DataObjectClient extends DataObject {
    * @return $boolean
    */
   private static function containsProfanity($text) {
-    $result = file_get_contents('http://www.purgomalum.com/service/containsprofanity?text=' . urlencode($text));
+    $result = @file_get_contents('http://www.purgomalum.com/service/containsprofanity?text=' . urlencode($text));
     if ($result === 'true') {
       return true;
     }
