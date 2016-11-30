@@ -38,11 +38,29 @@ class HolidayClass extends DataObjectClient {
   );
 
   private static $searchable_fields = array(
-    'Title',
-    'Level',
-    'MinAge',
-    'MaxAge',
-    'Description'
+    'Title' => array(
+      'title' => 'Title',
+      'field' => 'TextField',
+      'filter' => 'PartialMatchFilter'
+    ),
+    'Level' => array(
+      'title' => 'Level'
+    ),
+    'MinAge' => array(
+      'title' => 'Min Age',
+      'field' => 'NumericField',
+      'filter' => 'ExactMatchFilter'
+    ),
+    'MaxAge' => array(
+      'title' => 'Max Age',
+      'field' => 'NumericField',
+      'filter' => 'ExactMatchFilter'
+    ),
+    'Description' => array(
+      'title' => 'Description',
+      'field' => 'TextField',
+      'filter' => 'PartialMatchFilter'
+    )
   );
 
   public function getCMSFields() {

@@ -26,11 +26,36 @@ class Venue extends DataObjectClient {
   );
 
   private static $searchable_fields = array(
-    'City',
-    'Name',
-    'FullName',
-    'ContactNumber',
-    'EmailAddress'
+    'City' => array(
+      'title' => 'City',
+      'field' => 'TextField',
+      'filter' => 'PartialMatchFilter'
+    ),
+    'Name' => array(
+      'title' => 'Short Venue Name',
+      'field' => 'TextField',
+      'filter' => 'PartialMatchFilter'
+    ),
+    'FullName' => array(
+      'title' => 'Full Venue Name',
+      'field' => 'TextField',
+      'filter' => 'PartialMatchFilter'
+    ),
+    'ContactNumber' => array(
+      'title' => 'Contact Number',
+      'field' => 'TextField',
+      'filter' => 'ExactMatchFilter'
+    ),
+    'EmailAddress' => array(
+      'title' => 'Email Address',
+      'field' => 'TextField',
+      'filter' => 'ExactMatchFilter'
+    ),
+    'Notes' => array(
+      'title' => 'Notes',
+      'field' => 'TextField',
+      'filter' => 'PartialMatchFilter'
+    )
   );
 
   public function getCMSFields() {
