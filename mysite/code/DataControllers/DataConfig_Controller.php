@@ -21,7 +21,7 @@ class DataConfig_Controller extends Data_Controller {
     );
 
     $pages = array();
-    foreach (WebAppPage::get() as $key => $page) {
+    foreach (WebAppPage::get() as $page) {
       $pages[$page->WebAppPageName] = array(
         'tilte' => $page->Title,
         'menuTitle' => $page->MenuTitle,
@@ -30,7 +30,7 @@ class DataConfig_Controller extends Data_Controller {
     }
 
     $cities = array();
-    foreach (Venue::get() as $key => $venue) {
+    foreach (Venue::get() as $venue) {
       if (!array_key_exists($venue->City, $cities)) {
         $cities[$venue->City] = array();
       }
