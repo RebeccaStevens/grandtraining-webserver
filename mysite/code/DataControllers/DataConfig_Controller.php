@@ -22,6 +22,9 @@ class DataConfig_Controller extends Data_Controller {
 
     $pages = array();
     foreach (WebAppPage::get() as $page) {
+      if ($page->WebAppPageName === null) {
+        continue;
+      }
       $pages[$page->WebAppPageName] = array(
         'tilte' => $page->Title,
         'menuTitle' => $page->MenuTitle,
