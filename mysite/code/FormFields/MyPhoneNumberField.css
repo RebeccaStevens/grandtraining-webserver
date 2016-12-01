@@ -1,0 +1,13 @@
+.field.myphonenumber .fieldgroup-field:nth-child(1),
+.field.myphonenumber .fieldgroup-field:nth-child(3) {
+  padding: 16px 0;
+}
+
+.field.myphonenumber .fieldgroup-field .phone-number-label {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.field.myphonenumber .fieldgroup-field:nth-child(3) .phone-number-label {
+  margin-right: 8px;
+}
