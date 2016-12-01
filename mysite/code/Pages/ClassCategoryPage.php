@@ -28,7 +28,7 @@ class ClassCategoryPage extends WebAppSubPage {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.Main', UploadField::create('CategoryImage', 'Category Image'));
+    $fields->addFieldToTab('Root.Main', UploadField::create('CategoryImage', 'Image'));
 
     $fields->addFieldToTab('Root.Main', $editorField = HTMLEditorField::create('Teaser', 'Teaser'));
     $editorField->setRows(10);
