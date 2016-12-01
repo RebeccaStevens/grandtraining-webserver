@@ -85,4 +85,14 @@ class HolidayClass extends DataObjectClient {
 
     return $fields;
   }
+
+  public function getCMSValidator() {
+    return new RequiredFields(array(
+      'Title',
+      'Level',
+      'MinAge',
+      'MaxAge',
+      'Description'
+    ));
+  }
 }

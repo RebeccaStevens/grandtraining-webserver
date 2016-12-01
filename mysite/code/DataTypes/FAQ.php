@@ -29,4 +29,11 @@ class FAQ extends DataObjectClient {
 
     return $fields;
   }
+
+  public function getCMSValidator() {
+    return new RequiredFields(array(
+      'Question',
+      'Answer'
+    ));
+  }
 }

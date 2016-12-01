@@ -75,4 +75,14 @@ class Venue extends DataObjectClient {
 
     return $fields;
   }
+
+  public function getCMSValidator() {
+    return new RequiredFields(array(
+      'City',
+      'Name',
+      'FullName',
+      'Latitude',
+      'Longitude'
+    ));
+  }
 }

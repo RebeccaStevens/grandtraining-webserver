@@ -46,4 +46,12 @@ class Testimonial extends DataObjectClient {
 
     return $fields;
   }
+
+  public function getCMSValidator() {
+    return new RequiredFields(array(
+      'Author',
+      'DateWritten',
+      'Content'
+    ));
+  }
 }
