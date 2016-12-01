@@ -60,17 +60,18 @@ class Venue extends DataObjectClient {
 
   public function getCMSFields() {
     $fields = parent::getCMSFields();
-    $fields->addFieldsToTab('Root.Main', array(
-      TextField::create('City', 'City'),
-      TextField::create('Name', 'Short Venue Name'),
-      TextField::create('FullName', 'Full Venue Name'),
-      TextareaField::create('Address', 'Address'),
-      PhoneNumberField::create('ContactNumber', 'Contact Number'),
-      EmailField::create('EmailAddress', 'Email'),
-      TextField::create('Notes', 'Notes'),
-      NumericField::create('Latitude', 'Latitude'),
-      NumericField::create('Longitude', 'Longitude')
-    ));
+    $fields->addFieldToTab('Root.Main', TextField::create('City', 'City'));
+    $fields->addFieldToTab('Root.Main', $field = TextField::create('Name', 'Short Venue Name'));
+    $field->setDescription('The name of this venue (not including the city).');
+    $fields->addFieldToTab('Root.Main', $field = TextField::create('FullName', 'Full Venue Name'));
+    $field->setDescription('The full name of this venue (short name + city).');
+    $fields->addFieldToTab('Root.Main', TextareaField::create('Address', 'Address'));
+    $fields->addFieldToTab('Root.Main', MyPhoneNumberField::create('ContactNumber', 'Contact Number'));
+    $fields->addFieldToTab('Root.Main', EmailField::create('EmailAddress', 'Contact Email'));
+    $fields->addFieldToTab('Root.Main', TextField::create('Notes', 'Notes'));
+    $fields->addFieldToTab('Root.Main', HeaderField::create(null, 'GPS Location (for Google Maps)'));
+    $fields->addFieldToTab('Root.Main', $field = NumericField::create('Latitude', 'Latitude'));
+    $fields->addFieldToTab('Root.Main', $field = NumericField::create('Longitude', 'Longitude'));
 
     return $fields;
   }

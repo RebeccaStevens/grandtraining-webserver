@@ -77,9 +77,9 @@ class HolidayClass extends DataObjectClient {
       TextField::create('Title', 'Title'),
       $categories,
       $availableVenues,
-      DropdownField::create('Level', 'Level', singleton('HolidayClass')->dbObject('Level')->enumValues()),
-      NumericField::create('MinAge', 'Min Age'),
-      NumericField::create('MaxAge', 'Max Age'),
+      DropdownField::create('Level', 'Class Level', singleton('HolidayClass')->dbObject('Level')->enumValues()),
+      NumericField::create('MinAge', 'Min Recommended Age'),
+      NumericField::create('MaxAge', 'Max Recommended Age'),
       HTMLEditorField::create('Description', 'Description')
     ));
 
