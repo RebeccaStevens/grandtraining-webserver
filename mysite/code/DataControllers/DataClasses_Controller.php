@@ -37,10 +37,19 @@ class DataClasses_Controller extends Data_Controller {
       }
       $locationsAvailable = array_keys($locationsAvailableMap);
 
+      $teaser = $category->Teaser;
+      if (!isset($teaser)) {
+        if ($category->Description) {
+          $description = HTMLText::create();
+          $description->setValue($category->Description);
+          $teaser = $description->FirstParagraph();
+        }
+      }
+
       $categories[] = array(
         'name' => $category->MenuTitle,
         'url' => $category->URLSegment,
-        'teaser' => $category->Teaser,
+        'teaser' => $teaser,
         'image' => $this->getImageData($sizedImage),
         'locationsAvailable' => $locationsAvailable
       );

@@ -9,7 +9,7 @@ class ClassCategoryPage extends WebAppSubPage {
   }
 
   private static $db = array(
-    'Teaser' => 'HTMLVarchar(512)',
+    'Teaser' => 'HTMLText',
     'Description' => 'HTMLText'
   );
 
@@ -32,9 +32,11 @@ class ClassCategoryPage extends WebAppSubPage {
 
     $fields->addFieldToTab('Root.Main', $editorField = HTMLEditorField::create('Teaser', 'Teaser'));
     $editorField->setRows(10);
+    $editorField->setDescription('Will be shown on the class hub page. If left blank, the first paragraph of the description will be used.');
 
     $fields->addFieldToTab('Root.Main', $editorField = HTMLEditorField::create('Description', 'Description'));
     $editorField->setRows(25);
+    $editorField->setDescription('Will be shown on the class details page.');
 
     return $fields;
   }
