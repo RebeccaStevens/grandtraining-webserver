@@ -33,7 +33,7 @@ class DataConfig_Controller extends Data_Controller {
     }
 
     $venues = array();
-    foreach (Venue::get() as $venue) {
+    foreach (Venue::get()->sort(array('City' => 'ASC', 'Name' => 'ASC')) as $venue) {
       if (!array_key_exists($venue->City, $venues)) {
         $venues[$venue->City] = array();
       }
