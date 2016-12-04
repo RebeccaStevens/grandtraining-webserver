@@ -33,10 +33,7 @@ class Testimonial extends DataObjectClient {
     $dateField = DateField::create('DateWritten', 'Date Written')
       ->setConfig('dateformat', 'd/M/yyyy')
       ->setConfig('max', date('c'));
-    $dateField->setDescription(sprintf(
-			_t('FormField.Example', 'e.g. %s', 'Example format'),
-			Convert::raw2xml(Zend_Date::now()->toString($dateField->getConfig('dateformat')))
-		));
+    $dateField->setDescription(sprintf('e.g. %s', Convert::raw2xml(Zend_Date::now()->toString($dateField->getConfig('dateformat')))));
 		$dateField->setAttribute('placeholder', $dateField->getConfig('dateformat'));
     $fields->addFieldToTab('Root.Main', $dateField);
 
