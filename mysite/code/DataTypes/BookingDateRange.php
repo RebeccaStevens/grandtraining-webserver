@@ -5,7 +5,7 @@ class BookingDateRange extends DataObjectClient {
     'StartDate' => 'Date',
     'EndDate' => 'Date',
     'Cost' => 'Currency',
-    'Availability' => 'Enum(\'available, canceled, full\',\'available\')'
+    'Availability' => 'Enum(\'Available, Canceled, Full\',\'Available\')'
   );
 
   private static $has_one = array(
