@@ -89,6 +89,21 @@ class DataClasses_Controller extends Data_Controller {
             if ($category->ID === $ClassCategoryPage->ID) {
               $sizedImage = $class->Banner()->Fill(700, 140);
 
+              $dates = array();
+              foreach (BookingDateRange::get()->filter(array(
+                'HolidayClassID' => $class->ID,
+                'StartDate:GreaterThanOrEqual' => date('c')
+                )) as $date) {
+                $dates[] = array(
+                  "id" => $date->ClientFormattedID(),
+                  "start-date" => $date->StartDate,
+                  "end-date" => $date->EndDate,
+                  "excludes" => array(),
+                  "cost" => $date->Cost,
+                  "availability" => strtolower($date->Availability)
+                );
+              }
+
               $classes[] = array(
                 'title' => $class->Title,
                 'level' => $class->Level,
@@ -96,7 +111,7 @@ class DataClasses_Controller extends Data_Controller {
                 'min-age' => $class->MinAge,
                 'max-age' => $class->MaxAge,
                 'description' => $class->Description,
-                'dates' => array()
+                'dates' => $dates
               );
               $finishedWithThisClass = true;
               break;
