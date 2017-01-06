@@ -55,7 +55,7 @@ class DataConfig_Controller extends Data_Controller {
           'zoom' => intval($siteConfig->GoogleMapsZoom)
         ),
         'recaptcha-config' => array(
-          'api-key' => $siteConfig->RecaptchaApiKey,
+          'site-key' => $siteConfig->RecaptchaApiSiteKey,
         )
       ),
       'links' => array(
