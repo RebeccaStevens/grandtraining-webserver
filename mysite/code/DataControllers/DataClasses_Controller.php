@@ -95,12 +95,12 @@ class DataClasses_Controller extends Data_Controller {
                 'StartDate:GreaterThanOrEqual' => date('c')
                 )) as $date) {
                 $dates[] = array(
-                  "id" => $date->ClientFormattedID(),
-                  "start-date" => $date->StartDate,
-                  "end-date" => $date->EndDate,
-                  "excludes" => array(),
-                  "cost" => $date->Cost,
-                  "availability" => strtolower($date->Availability)
+                  'id' => $date->ClientFormattedID(),
+                  'start-date' => $date->StartDate,
+                  'end-date' => $date->EndDate,
+                  'excludes' => array(),
+                  'cost' => $date->Cost,
+                  'availability' => strtolower($date->Availability)
                 );
               }
 
