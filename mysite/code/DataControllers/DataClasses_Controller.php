@@ -108,8 +108,8 @@ class DataClasses_Controller extends Data_Controller {
                 'title' => $class->Title,
                 'level' => $class->Level,
                 'image' => $this->getImageData($sizedImage),
-                'min-age' => $class->MinAge,
-                'max-age' => $class->MaxAge,
+                'min-age' => intval($class->MinAge),
+                'max-age' => intval($class->MaxAge),
                 'description' => $class->Description,
                 'dates' => $dates
               );

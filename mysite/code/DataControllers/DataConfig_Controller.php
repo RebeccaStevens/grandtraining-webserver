@@ -52,7 +52,7 @@ class DataConfig_Controller extends Data_Controller {
       'api-configs' => array(
         'map-config' => array(
           'api-key' => $siteConfig->GoogleMapsApiKey,
-          'zoom' => $siteConfig->GoogleMapsZoom
+          'zoom' => intval($siteConfig->GoogleMapsZoom)
         ),
         'recaptcha-config' => array(
           'api-key' => $siteConfig->RecaptchaApiKey,
@@ -60,8 +60,7 @@ class DataConfig_Controller extends Data_Controller {
       ),
       'links' => array(
         'bookclass' => "/bookings/booknow/bookclass"
-      ),
-      'countryCode' => "+64"
+      )
     ));
   }
 

@@ -24,8 +24,8 @@ class DataAboutUs_Controller extends Data_Controller {
         'email' => $venue->EmailAddress,
         'notes' => $venue->Notes,
         'location' => array(
-          'latitude' => $venue->Latitude,
-          'longitude' => $venue->Longitude
+          'latitude' => floatval($venue->Latitude),
+          'longitude' => floatval($venue->Longitude)
         )
       );
     }
