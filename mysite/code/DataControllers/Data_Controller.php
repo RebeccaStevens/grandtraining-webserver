@@ -15,7 +15,8 @@ abstract class Data_Controller extends Controller {
       // $this->response->addHeader('Access-Control-Allow-Origin', '*');  // seems to have a bug of some sort wtih file_get_contents
       header('Access-Control-Allow-Origin: *');                           // use the standard header function
     }
-    $this->response->addHeader('Content-Type', 'application/json');
+    // $this->response->addHeader('Content-Type', 'application/json');
+    header('Content-Type: application/json');
     echo json_encode($data);
   }
 
