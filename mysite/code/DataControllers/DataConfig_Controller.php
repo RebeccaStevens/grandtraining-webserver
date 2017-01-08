@@ -26,7 +26,7 @@ class DataConfig_Controller extends Data_Controller {
         continue;
       }
       $pages[$page->WebAppPageName] = array(
-        'tilte' => $page->Title,
+        'title' => $page->Title,
         'menuTitle' => $page->MenuTitle,
         'url' => $page->Link()
       );
