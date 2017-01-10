@@ -36,4 +36,11 @@ class FAQ extends DataObjectClient {
       'Answer'
     ));
   }
+
+  public function onBeforeWrite() {
+    if (!isset($this->FAQPage)) {
+      $this->PageID = FAQPage::get()[0]->ID;
+    }
+		parent::onBeforeWrite();
+	}
 }
