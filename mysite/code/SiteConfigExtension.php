@@ -12,7 +12,11 @@ class SiteConfigExtension extends DataExtension {
     'GoogleMapsZoom' => 'Int',
     'GoogleMapsApiKey' => 'Varchar',
     'RecaptchaApiSiteKey' => 'Varchar',
-    'RecaptchaApiSecretKey' => 'Varchar'
+    'RecaptchaApiSecretKey' => 'Varchar',
+
+    'EtrainTitle' => 'Varchar(256)',
+    'EtrainMenuTitle' => 'Varchar(256)',
+    'EtrainLink' => 'Varchar(256)'
   );
 
   public static $has_one = array(
@@ -34,6 +38,11 @@ class SiteConfigExtension extends DataExtension {
     $field->setDescription('When a user makes a bookings, a notification will be sent to this email address.');
     $fields->addFieldsToTab('Root.Main', $field = EmailField::create('ContactEmail', 'Contact Form'));
     $field->setDescription('Messages sent throught the contact us form will be sent to this address.');
+
+    $fields->addFieldsToTab('Root.Main', HeaderField::create(null, 'eTrain Settings'));
+    $fields->addFieldsToTab('Root.Main', TextField::create('EtrainTitle', 'Title'));
+    $fields->addFieldsToTab('Root.Main', TextField::create('EtrainMenuTitle', 'Link Text'));
+    $fields->addFieldsToTab('Root.Main', TextField::create('EtrainLink', 'Link'));
 
     $fields->addFieldsToTab('Root.Social', array(
       HeaderField::create(null, 'Social Media Networks'),

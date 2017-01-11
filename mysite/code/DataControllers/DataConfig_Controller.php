@@ -60,6 +60,11 @@ class DataConfig_Controller extends Data_Controller {
       ),
       'links' => array(
         'bookclass' => "/bookings/booknow/bookclass"
+      ),
+      'etrain' => array(
+        'title' => $siteConfig->EtrainTitle,
+        'menuTitle' => $siteConfig->EtrainMenuTitle,
+        'url' => $siteConfig->EtrainLink
       )
     ));
   }
