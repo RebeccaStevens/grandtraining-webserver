@@ -17,7 +17,7 @@ class DataAboutUs_Controller extends Data_Controller {
       $cfid = $venue->ClientFormattedID();
       $venues[$cfid] = array(
         'id' => $cfid,
-        'city' => $venue->City,
+        'region' => $venue->Region,
         'name' => $venue->Name,
         'address' => $venue->Address,
         'contactNumber' => $venue->ContactNumber,

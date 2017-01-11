@@ -32,14 +32,14 @@ class DataConfig_Controller extends Data_Controller {
       );
     }
 
-    $venues = array();
-    foreach (Venue::get()->sort(array('City' => 'ASC', 'Name' => 'ASC')) as $venue) {
-      if (!array_key_exists($venue->City, $venues)) {
-        $venues[$venue->City] = array();
+    $regions = array();
+    foreach (Venue::get()->sort(array('Region' => 'ASC', 'Name' => 'ASC')) as $venue) {
+      if (!array_key_exists($venue->Region, $regions)) {
+        $regions[$venue->Region] = array();
       }
-      $venues[$venue->City][$venue->ClientFormattedID()] = array(
+      $regions[$venue->Region][$venue->ClientFormattedID()] = array(
         'id' => $venue->ClientFormattedID(),
-        'city' => $venue->City,
+        'region' => $venue->Region,
         'name' => $venue->Name,
         'fullname' => $venue->FullName,
       );
@@ -48,7 +48,7 @@ class DataConfig_Controller extends Data_Controller {
     $this->echoJson(array(
       'company' => $company,
       'pages' => $pages,
-      'venues' => $venues,
+      'regions' => $regions,
       'api-configs' => array(
         'map-config' => array(
           'api-key' => $siteConfig->GoogleMapsApiKey,

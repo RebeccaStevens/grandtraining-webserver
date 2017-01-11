@@ -2,7 +2,7 @@
 class Venue extends DataObjectClient {
 
   private static $db = array(
-    'City' => 'Varchar(100)',
+    'Region' => 'Varchar(100)',
     'Name' => 'Varchar(100)',
     'FullName' => 'Varchar(256)',
     'Address' => 'Varchar(256)',
@@ -19,15 +19,15 @@ class Venue extends DataObjectClient {
 
   private static $summary_fields = array(
     'FullName' => 'Full Venue Name',
-    'City' => 'City',
+    'Region' => 'Region',
     'Name' => 'Short Venue Name',
     'ContactNumber' => 'Contact Number',
     'EmailAddress' => 'Email'
   );
 
   private static $searchable_fields = array(
-    'City' => array(
-      'title' => 'City',
+    'Region' => array(
+      'title' => 'Region',
       'field' => 'TextField',
       'filter' => 'PartialMatchFilter'
     ),
@@ -60,11 +60,11 @@ class Venue extends DataObjectClient {
 
   public function getCMSFields() {
     $fields = parent::getCMSFields();
-    $fields->addFieldToTab('Root.Main', TextField::create('City', 'City'));
+    $fields->addFieldToTab('Root.Main', TextField::create('Region', 'Region'));
     $fields->addFieldToTab('Root.Main', $field = TextField::create('Name', 'Short Venue Name')
-      ->setDescription('The name of this venue (not including the city).'));
+      ->setDescription('The name of this venue (not including the region).'));
     $fields->addFieldToTab('Root.Main', $field = TextField::create('FullName', 'Full Venue Name')
-      ->setDescription('The full name of this venue (short name + city).'));
+      ->setDescription('The full name of this venue (short name + region).'));
     $fields->addFieldToTab('Root.Main', TextareaField::create('Address', 'Address'));
     $fields->addFieldToTab('Root.Main', MyPhoneNumberField::create('ContactNumber', 'Contact Number'));
     $fields->addFieldToTab('Root.Main', EmailField::create('EmailAddress', 'Contact Email'));
@@ -78,7 +78,7 @@ class Venue extends DataObjectClient {
 
   public function getCMSValidator() {
     return new RequiredFields(array(
-      'City',
+      'Region',
       'Name',
       'FullName',
       'Latitude',
