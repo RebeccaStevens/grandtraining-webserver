@@ -28,7 +28,10 @@ class ClassCategoryPage extends WebAppSubPage {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.Main', UploadField::create('CategoryImage', 'Image'));
+    $fields->addFieldToTab('Root.Main', $uploadField = UploadField::create('CategoryImage', 'Image'));
+    $uploadField->setDescription('The image shown on class hub page.');
+    $uploadField->setFolderName('class-hub');
+    $uploadField->setAllowedExtensions(ALLOWED_IMAGE_EXTENSIONS);
 
     $fields->addFieldToTab('Root.Main', $editorField = HTMLEditorField::create('Teaser', 'Teaser'));
     $editorField->setRows(10);

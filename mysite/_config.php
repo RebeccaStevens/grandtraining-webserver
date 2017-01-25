@@ -10,3 +10,4 @@ $database = 'SS_grandtraining';
 i18n::set_locale('en_US');
 
 require_once('conf/ConfigureFromEnv.php');
+require_once('code/Constants.php');

@@ -36,7 +36,10 @@ class HomePage extends WebAppPage {
     $fields->addFieldToTab('Root.Main', TextField::create('Heading1', 'Main Header'));
     $fields->addFieldToTab('Root.Main', TextField::create('Heading2', 'Sub Header'));
 
-    $fields->addFieldToTab('Root.CarouselImages', UploadField::create('carouselImages', 'Carousel Images'));
+    $fields->addFieldToTab('Root.CarouselImages', $uploadField = UploadField::create('carouselImages', 'Carousel Images'));
+    $uploadField->setDescription('The main images on the home page.');
+    $uploadField->setFolderName('carousel');
+    $uploadField->setAllowedExtensions(ALLOWED_IMAGE_EXTENSIONS);
 
     $fields->addFieldToTab('Root.Cards.Philosophy', TextField::create('PhilosophyCardHeading', 'Card\'s Heading'));
     $fields->addFieldToTab('Root.Cards.Philosophy', $editorField = HTMLEditorField::create('PhilosophyCardContent', 'Card\'s Content'));

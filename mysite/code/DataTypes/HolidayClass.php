@@ -66,6 +66,11 @@ class HolidayClass extends DataObjectClient {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
+    $banner = UploadField::create('Banner', 'Banner Image');
+    $banner->setDescription('The image displayed above the class.');
+    $banner->setFolderName('classes');
+    $banner->setAllowedExtensions(ALLOWED_IMAGE_EXTENSIONS);
+
     $categories = ListboxField::create('ClassCategories', 'Class Categories')->setMultiple(true)->setSource(ClassCategoryPage::get()->map('ID', 'Title')->toArray());
     $categories->setDescription('The categories this class should be shown in.');
 
@@ -73,7 +78,7 @@ class HolidayClass extends DataObjectClient {
     $availableVenues->setDescription('The venues at which this class is avaliable.');
 
     $fields->addFieldsToTab('Root.Main', array(
-      UploadField::create('Banner', 'Banner Image'),
+      $banner,
       TextField::create('Title', 'Title'),
       $categories,
       $availableVenues,

@@ -30,7 +30,11 @@ class SiteConfigExtension extends DataExtension {
     $fields->insertBefore(new TabSet('3rdParty', '3rd Party'), 'Access');
 
     $fields->addFieldsToTab('Root.Main', HeaderField::create(null, 'Company Settings'), 'Title');
-    $fields->addFieldsToTab('Root.Main', UploadField::create('Logo', 'Logo'), 'Title');
+    $fields->addFieldsToTab('Root.Main', $uploadfield = UploadField::create('Logo', 'Logo'), 'Title');
+    $uploadfield->setDescription('The Logo of the site.');
+    $uploadfield->setFolderName('site');
+    $uploadfield->setAllowedExtensions(ALLOWED_IMAGE_EXTENSIONS);
+
     $fields->removeFieldFromTab('Root.Main', 'Tagline');
 
     $fields->addFieldsToTab('Root.Main', HeaderField::create(null, 'Email Settings'));
