@@ -1,4 +1,5 @@
 <?php
+
 class WebAppSubPage extends WebAppPage {
 
 	public function getCMSFields() {
@@ -8,8 +9,4 @@ class WebAppSubPage extends WebAppPage {
 
     return $fields;
   }
-}
-
-class WebAppSubPage_Controller extends WebAppPage_Controller {
-
 }

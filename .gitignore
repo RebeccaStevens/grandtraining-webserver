@@ -14,14 +14,12 @@
 vendor
 framework
 cms
+asset-admin
 assets
 reports
+graphql
 siteconfig
 gridfieldextensions
-betterbuttons
-kickassets
-dropzone
-event_calendar
 silverstripe-cache
 silverstripe.log
 

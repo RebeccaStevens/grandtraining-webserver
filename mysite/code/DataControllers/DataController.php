@@ -1,9 +1,14 @@
 <?php
 
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\Director;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Assets\Image;
+
 /**
  * This contoller manages data request for the site.
  */
-abstract class Data_Controller extends Controller {
+abstract class DataController extends Controller {
 
   /**
    * Echo out the given data as json and set the response Content-Type header to json.
@@ -12,10 +17,8 @@ abstract class Data_Controller extends Controller {
    */
   protected function echoJson($data) {
     if (Director::isDev()) {
-      // $this->response->addHeader('Access-Control-Allow-Origin', '*');  // seems to have a bug of some sort wtih file_get_contents
-      header('Access-Control-Allow-Origin: *');                           // use the standard header function
+      header('Access-Control-Allow-Origin: *');
     }
-    // $this->response->addHeader('Content-Type', 'application/json');
     header('Content-Type: application/json');
     echo json_encode($data);
   }
@@ -26,7 +29,7 @@ abstract class Data_Controller extends Controller {
    *
    * @return boolean Whether or not the request was for a json file.
    */
-  protected function ensureJsonRequest(SS_HTTPRequest $request) {
+  protected function ensureJsonRequest(HTTPRequest $request) {
     if ($request->getExtension() === 'json') {
       return true;
     }
@@ -82,7 +85,7 @@ abstract class Data_Controller extends Controller {
     $width = round($width);
     $height = round($height);
 
-    return $this->base64encodeImage($image->SetSize($width, $height)->Link());
+    return $this->base64encodeImage($image->FillMax($width, $height)->getURL());
   }
 
   /**

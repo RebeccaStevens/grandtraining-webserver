@@ -1,5 +1,8 @@
 <?php
-class DataHome_Controller extends Data_Controller {
+
+use SilverStripe\Control\HTTPRequest;
+
+class DataHomeController extends DataController {
 
   private static $url_handlers = array('' => 'getData');
   private static $allowed_actions = array('getData');
@@ -7,7 +10,7 @@ class DataHome_Controller extends Data_Controller {
   /**
    * Handles request for this data
    */
-  public function getData(SS_HTTPRequest $request) {
+  public function getData(HTTPRequest $request) {
     if (!$this->ensureJsonRequest($request)) {
       return;
     }
@@ -16,7 +19,7 @@ class DataHome_Controller extends Data_Controller {
 
     $carouselImages = array();
     foreach ($homePage->CarouselImages() as $key => $image) {
-      $sizedImage = $image->SetWidth(1920);
+      $sizedImage = $image->ScaleWidth(1920);
       $carouselImages[] = $this->getImageData($sizedImage);
     }
 

@@ -1,5 +1,8 @@
 <?php
-class DataAboutUs_Controller extends Data_Controller {
+
+use SilverStripe\Control\HTTPRequest;
+
+class DataAboutUsController extends DataController {
 
   private static $url_handlers = array('' => 'getData');
   private static $allowed_actions = array('getData');
@@ -7,7 +10,7 @@ class DataAboutUs_Controller extends Data_Controller {
   /**
    * Handles request for this data
    */
-  public function getData(SS_HTTPRequest $request) {
+  public function getData(HTTPRequest $request) {
     if (!$this->ensureJsonRequest($request)) {
       return;
     }

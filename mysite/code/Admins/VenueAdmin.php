@@ -1,4 +1,7 @@
 <?php
+
+use SilverStripe\Admin\ModelAdmin;
+
 class VenueAdmin extends ModelAdmin {
 
   private static $menu_title = 'Venues';

@@ -1,8 +1,14 @@
 <?php
+
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+
 class FAQPage extends WebAppPage {
+
   public $WebAppPageName = 'faq';
   private static $can_be_root = true;
-  private static $allowed_children = array ();
+  private static $allowed_children = array();
 
   private static $has_many = array(
     'FAQs' => 'FAQ'
@@ -11,7 +17,7 @@ class FAQPage extends WebAppPage {
   /**
    * Only allow one instance of this page type.
    */
-  public function canCreate($member = null) {
+  public function canCreate($member = null, $context = array()) {
     return DataObject::get(__CLASS__)->count() === 0;
   }
 
@@ -22,8 +28,4 @@ class FAQPage extends WebAppPage {
 
     return $fields;
   }
-}
-
-class FAQPage_Controller extends WebAppPage_Controller {
-
 }

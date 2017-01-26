@@ -1,5 +1,14 @@
 <?php
+
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\UploadField;
+
 class HomePage extends WebAppPage {
+
   public $WebAppPageName = 'home';
   private static $hide_ancestor = 'WebAppPage';
   private static $can_be_root = true;
@@ -8,7 +17,7 @@ class HomePage extends WebAppPage {
   /**
    * Only allow one instance of this page type.
    */
-  public function canCreate($member = null) {
+  public function canCreate($member = null, $context = array()) {
     return DataObject::get(__CLASS__)->count() === 0;
   }
 
@@ -27,7 +36,7 @@ class HomePage extends WebAppPage {
   );
 
   private static $many_many = array(
-    'CarouselImages' => 'Image'
+    'CarouselImages' => 'SilverStripe\Assets\Image'
   );
 
   public function getCMSFields() {
@@ -54,8 +63,4 @@ class HomePage extends WebAppPage {
 
     return $fields;
   }
-}
-
-class HomePage_Controller extends WebAppPage_Controller {
-
 }

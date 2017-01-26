@@ -1,4 +1,11 @@
 <?php
+
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Forms\CurrencyField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\RequiredFields;
+
 class BookingDateRange extends DataObjectClient {
 
   private static $db = array(

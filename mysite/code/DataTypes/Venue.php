@@ -1,4 +1,13 @@
 <?php
+
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\TextareaField;
+use SilverStripe\Forms\EmailField;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Forms\PhoneNumberField;
+use SilverStripe\Forms\RequiredFields;
+
 class Venue extends DataObjectClient {
 
   private static $db = array(
@@ -18,9 +27,9 @@ class Venue extends DataObjectClient {
   );
 
   private static $summary_fields = array(
-    'FullName' => 'Full Venue Name',
+    'FullName' => 'Long Name',
     'Region' => 'Region',
-    'Name' => 'Short Venue Name',
+    'Name' => 'Name',
     'ContactNumber' => 'Contact Number',
     'EmailAddress' => 'Email'
   );
@@ -28,32 +37,32 @@ class Venue extends DataObjectClient {
   private static $searchable_fields = array(
     'Region' => array(
       'title' => 'Region',
-      'field' => 'TextField',
+      'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'PartialMatchFilter'
     ),
     'Name' => array(
       'title' => 'Short Venue Name',
-      'field' => 'TextField',
+      'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'PartialMatchFilter'
     ),
     'FullName' => array(
       'title' => 'Full Venue Name',
-      'field' => 'TextField',
+      'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'PartialMatchFilter'
     ),
     'ContactNumber' => array(
       'title' => 'Contact Number',
-      'field' => 'TextField',
+      'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'ExactMatchFilter'
     ),
     'EmailAddress' => array(
       'title' => 'Email Address',
-      'field' => 'TextField',
+      'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'ExactMatchFilter'
     ),
     'Notes' => array(
       'title' => 'Notes',
-      'field' => 'TextField',
+      'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'PartialMatchFilter'
     )
   );
@@ -66,7 +75,7 @@ class Venue extends DataObjectClient {
     $fields->addFieldToTab('Root.Main', $field = TextField::create('FullName', 'Full Venue Name')
       ->setDescription('The full name of this venue (short name + region).'));
     $fields->addFieldToTab('Root.Main', TextareaField::create('Address', 'Address'));
-    $fields->addFieldToTab('Root.Main', MyPhoneNumberField::create('ContactNumber', 'Contact Number'));
+    $fields->addFieldToTab('Root.Main', PhoneNumberField::create('ContactNumber', 'Contact Number', null, null, true, null));
     $fields->addFieldToTab('Root.Main', EmailField::create('EmailAddress', 'Contact Email'));
     $fields->addFieldToTab('Root.Main', TextField::create('Notes', 'Notes'));
     $fields->addFieldToTab('Root.Main', HeaderField::create(null, 'GPS Location (for Google Maps)'));

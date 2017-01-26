@@ -1,5 +1,9 @@
 <?php
+
+use SilverStripe\ORM\DataObject;
+
 class ClassesPage extends WebAppPage {
+
   public $WebAppPageName = 'classes';
   private static $hide_ancestor = 'WebAppPage';
   private static $can_be_root = true;
@@ -8,11 +12,7 @@ class ClassesPage extends WebAppPage {
   /**
    * Only allow one instance of this page type.
    */
-  public function canCreate($member = null) {
+  public function canCreate($member = null, $context = array()) {
     return DataObject::get(__CLASS__)->count() === 0;
   }
-}
-
-class ClassesPage_Controller extends WebAppPage_Controller {
-  // private static $url_handlers = array('$Class' => 'handleAction');
 }

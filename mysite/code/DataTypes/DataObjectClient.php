@@ -1,4 +1,13 @@
 <?php
+
+use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\DB;
+use SilverStripe\ORM\Connect\DatabaseException;
+use SilverStripe\ORM\Queries\SQLInsert;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TabSet;
+use SilverStripe\Forms\ReadonlyField;
+
 /**
  * A DataObject designed to use a random number as its ID.
  */
@@ -40,7 +49,7 @@ class DataObjectClient extends DataObject {
           ->assign('"Created"', $now)
           ->execute();
         break;    // if successful, no need to try again
-      } catch (SS_DatabaseException $e) {
+      } catch (DatabaseException $e) {
         continue; // if unsuccessful, try again
       }
     }

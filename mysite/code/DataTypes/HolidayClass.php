@@ -1,4 +1,13 @@
 <?php
+
+use SilverStripe\Forms\UploadField;
+use SilverStripe\Forms\ListboxField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\RequiredFields;
+
 class HolidayClass extends DataObjectClient {
 
   private static $db = array(
@@ -10,7 +19,7 @@ class HolidayClass extends DataObjectClient {
   );
 
   private static $has_one = array(
-    'Banner' => 'Image'
+    'Banner' => 'SilverStripe\Assets\Image'
   );
 
   private static $has_many = array(
@@ -40,7 +49,7 @@ class HolidayClass extends DataObjectClient {
   private static $searchable_fields = array(
     'Title' => array(
       'title' => 'Title',
-      'field' => 'TextField',
+      'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'PartialMatchFilter'
     ),
     'Level' => array(
@@ -48,17 +57,17 @@ class HolidayClass extends DataObjectClient {
     ),
     'MinAge' => array(
       'title' => 'Min Age',
-      'field' => 'NumericField',
+      'field' => 'SilverStripe\Forms\NumericField',
       'filter' => 'ExactMatchFilter'
     ),
     'MaxAge' => array(
       'title' => 'Max Age',
-      'field' => 'NumericField',
+      'field' => 'SilverStripe\Forms\NumericField',
       'filter' => 'ExactMatchFilter'
     ),
     'Description' => array(
       'title' => 'Description',
-      'field' => 'TextField',
+      'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'PartialMatchFilter'
     )
   );
@@ -71,10 +80,10 @@ class HolidayClass extends DataObjectClient {
     $banner->setFolderName('classes');
     $banner->setAllowedExtensions(ALLOWED_IMAGE_EXTENSIONS);
 
-    $categories = ListboxField::create('ClassCategories', 'Class Categories')->setMultiple(true)->setSource(ClassCategoryPage::get()->map('ID', 'Title')->toArray());
+    $categories = ListboxField::create('ClassCategories', 'Class Categories')->setSource(ClassCategoryPage::get()->map('ID', 'Title')->toArray());
     $categories->setDescription('The categories this class should be shown in.');
 
-    $availableVenues = ListboxField::create('AvailableVenues', 'Available Venues')->setMultiple(true)->setSource(Venue::get()->map('ID', 'FullName')->toArray());
+    $availableVenues = ListboxField::create('AvailableVenues', 'Available Venues')->setSource(Venue::get()->map('ID', 'FullName')->toArray());
     $availableVenues->setDescription('The venues at which this class is avaliable.');
 
     $fields->addFieldsToTab('Root.Main', array(

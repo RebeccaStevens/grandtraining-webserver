@@ -1,5 +1,10 @@
 <?php
-class DataClasses_Controller extends Data_Controller {
+
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\ORM\FieldType\DBHTMLText;
+use SilverStripe\CMS\Model\SiteTree;
+
+class DataClassesController extends DataController {
 
   private static $url_handlers = array(
     '' => 'getData',
@@ -13,7 +18,7 @@ class DataClasses_Controller extends Data_Controller {
   /**
    * Handles request for this data
    */
-  public function getData(SS_HTTPRequest $request) {
+  public function getData(HTTPRequest $request) {
     if (!$this->ensureJsonRequest($request)) {
       return;
     }
@@ -24,7 +29,6 @@ class DataClasses_Controller extends Data_Controller {
     foreach (ClassCategoryPage::get() as $category) {
       $sizedImage = $category->CategoryImage()->Fill(250, 250);
 
-      $locationsAvailable = array();
       $locationsAvailableMap = array();
       foreach ($holidayClasses as $hc) {
         foreach ($hc->ClassCategories() as $cat) {
@@ -40,7 +44,7 @@ class DataClasses_Controller extends Data_Controller {
       $teaser = $category->Teaser;
       if (!isset($teaser)) {
         if ($category->Description) {
-          $description = HTMLText::create();
+          $description = DBHTMLText::create();
           $description->setValue($category->Description);
           $teaser = $description->FirstParagraph();
         }
@@ -63,7 +67,7 @@ class DataClasses_Controller extends Data_Controller {
   /**
    * Handles request for this data
    */
-  public function getClassCategoryPageData(SS_HTTPRequest $request) {
+  public function getClassCategoryPageData(HTTPRequest $request) {
     if (!$this->ensureJsonRequest($request)) {
       return;
     }

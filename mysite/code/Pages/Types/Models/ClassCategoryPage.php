@@ -1,10 +1,15 @@
 <?php
+
+use SilverStripe\Forms\UploadField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+
 class ClassCategoryPage extends WebAppSubPage {
+
   private static $hide_ancestor = 'WebAppSubPage';
   private static $can_be_root = false;
   private static $allowed_children = array();
 
-  public function canCreate($member = null) {
+  public function canCreate($member = null, $context = array()) {
     return true;
   }
 
@@ -14,7 +19,7 @@ class ClassCategoryPage extends WebAppSubPage {
   );
 
   private static $has_one = array(
-    'CategoryImage' => 'Image'
+    'CategoryImage' => 'SilverStripe\Assets\Image'
   );
 
   private static $many_many = array(
@@ -34,17 +39,13 @@ class ClassCategoryPage extends WebAppSubPage {
     $uploadField->setAllowedExtensions(ALLOWED_IMAGE_EXTENSIONS);
 
     $fields->addFieldToTab('Root.Main', $editorField = HTMLEditorField::create('Teaser', 'Teaser'));
-    $editorField->setRows(10);
+    $editorField->setRows(8);
     $editorField->setDescription('Will be shown on the class hub page. If left blank, the first paragraph of the description will be used.');
 
     $fields->addFieldToTab('Root.Main', $editorField = HTMLEditorField::create('Description', 'Description'));
-    $editorField->setRows(25);
+    $editorField->setRows(14);
     $editorField->setDescription('Will be shown on the class details page.');
 
     return $fields;
   }
-}
-
-class ClassCategoryPage_Controller extends WebAppSubPage_Controller {
-
 }

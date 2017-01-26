@@ -1,7 +1,18 @@
 <?php
+
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\Forms\HeaderField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\EmailField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Forms\UploadField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\TabSet;
+use SilverStripe\Forms\Tab;
+
 class SiteConfigExtension extends DataExtension {
 
-  public static $db = array(
+  private static $db = array(
     'BookingsEmail' => 'Varchar(256)',
     'ContactEmail' => 'Varchar(256)',
 
@@ -19,8 +30,8 @@ class SiteConfigExtension extends DataExtension {
     'EtrainLink' => 'Varchar(256)'
   );
 
-  public static $has_one = array(
-    'Logo' => 'Image'
+  private static $has_one = array(
+    'Logo' => 'SilverStripe\Assets\Image'
   );
 
   public function updateCMSFields(FieldList $fields) {

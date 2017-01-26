@@ -1,4 +1,9 @@
 <?php
+
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\Forms\RequiredFields;
+
 class FAQ extends DataObjectClient {
 
   private static $db = array(

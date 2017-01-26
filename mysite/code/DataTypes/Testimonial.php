@@ -1,4 +1,11 @@
 <?php
+
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\CheckboxSetField;
+use SilverStripe\Forms\DateField;
+use SilverStripe\Forms\RequiredFields;
+
 class Testimonial extends DataObjectClient {
 
   private static $db = array(

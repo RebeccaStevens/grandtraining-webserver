@@ -1,4 +1,8 @@
 <?php
+
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Forms\ReadonlyField;
+
 class WebAppPage extends SiteTree {
 
 	public $WebAppPageName = null;
@@ -7,7 +11,7 @@ class WebAppPage extends SiteTree {
    * This is an abstract class.
    * It cannot be craeted.
    */
-  public function canCreate($member = null) {
+  public function canCreate($member = null, $context = array()) {
     return false;
   }
 
@@ -21,8 +25,4 @@ class WebAppPage extends SiteTree {
 
     return $fields;
   }
-}
-
-class WebAppPage_Controller extends ContentController {
-
 }

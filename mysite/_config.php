@@ -4,10 +4,9 @@ global $project;
 $project = 'mysite';
 
 global $database;
-$database = 'SS_grandtraining';
+$database = 'ss_grandtraining';
 
-// Set the site locale
-i18n::set_locale('en_US');
-
+// Use _ss_environment.php file for configuration
 require_once('conf/ConfigureFromEnv.php');
+
 require_once('code/Constants.php');

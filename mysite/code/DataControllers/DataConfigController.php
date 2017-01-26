@@ -1,5 +1,9 @@
 <?php
-class DataConfig_Controller extends Data_Controller {
+
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\SiteConfig\SiteConfig;
+
+class DataConfigController extends DataController {
 
   private static $url_handlers = array('' => 'getData');
   private static $allowed_actions = array('getData');
@@ -7,7 +11,7 @@ class DataConfig_Controller extends Data_Controller {
   /**
    * Handles request for this data
    */
-  public function getData(SS_HTTPRequest $request) {
+  public function getData(HTTPRequest $request) {
     if (!$this::ensureJsonRequest($request)) {
       return;
     }
@@ -37,8 +41,9 @@ class DataConfig_Controller extends Data_Controller {
       if (!array_key_exists($venue->Region, $regions)) {
         $regions[$venue->Region] = array();
       }
-      $regions[$venue->Region][$venue->ClientFormattedID()] = array(
-        'id' => $venue->ClientFormattedID(),
+      $venueCFID = $venue->ClientFormattedID();
+      $regions[$venue->Region][$venueCFID] = array(
+        'id' => $venueCFID,
         'region' => $venue->Region,
         'name' => $venue->Name,
         'fullname' => $venue->FullName,

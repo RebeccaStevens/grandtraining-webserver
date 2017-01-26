@@ -1,9 +1,14 @@
 <?php
+
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+
 class ContactUsPage extends WebAppPage {
+
   public $WebAppPageName = 'contact-us';
   private static $hide_ancestor = 'WebAppPage';
   private static $can_be_root = true;
-  private static $allowed_children = array ();
+  private static $allowed_children = array();
 
   private static $db = array(
     'ConfirmationMessage' => 'HTMLVarchar(512)',
@@ -13,7 +18,7 @@ class ContactUsPage extends WebAppPage {
   /**
    * Only allow one instance of this page type.
    */
-  public function canCreate($member = null) {
+  public function canCreate($member = null, $context = array()) {
     return DataObject::get(__CLASS__)->count() === 0;
   }
 
@@ -28,8 +33,4 @@ class ContactUsPage extends WebAppPage {
 
     return $fields;
   }
-}
-
-class ContactUsPage_Controller extends WebAppPage_Controller {
-
 }

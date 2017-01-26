@@ -1,4 +1,7 @@
 <?php
+
+use SilverStripe\Admin\ModelAdmin;
+
 class DatesAdmin extends ModelAdmin {
 
   private static $menu_title = 'Bookings Dates';

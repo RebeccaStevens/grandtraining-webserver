@@ -32,8 +32,9 @@ ErrorDocument 500 /assets/error-500.html
 	SetEnv HTTP_MOD_REWRITE On
 	RewriteEngine On
 	RewriteBase '/'
+  RewriteRule ^.*ssets\/(.*)$ http://%{HTTP_HOST}/assets/$1 [L,R=301]
 
-	
+
 
 	# Deny access to potentially sensitive files and folders
 	RewriteRule ^vendor(/|$) - [F,L,NC]
