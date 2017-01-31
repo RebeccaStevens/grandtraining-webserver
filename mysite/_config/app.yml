@@ -1,3 +1,6 @@
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - SiteConfigExtension
+ContactAdmin:
+  extensions:
+    - ContactAdminExtension
