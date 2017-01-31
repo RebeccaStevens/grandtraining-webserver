@@ -1,5 +1,6 @@
 <?php
 
+use SilverStripe\ORM\DataObject;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\SiteConfig\SiteConfig;
 
@@ -64,7 +65,10 @@ class DataConfigController extends DataController {
         )
       ),
       'links' => array(
-        'bookclass' => "/bookings/booknow/bookclass"
+        'bookclass' => '/bookings/booknow/bookclass'
+      ),
+      'form-handlers' => array(
+        'contact-us' => DataObject::get(ContactUsPage::class)[0]->URLSegment . '/form-handler'
       ),
       'etrain' => array(
         'title' => $siteConfig->EtrainTitle,
