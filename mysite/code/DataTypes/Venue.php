@@ -30,7 +30,7 @@ class Venue extends DataObjectClient {
     'FullName' => 'Long Name',
     'Region' => 'Region',
     'Name' => 'Name',
-    'ContactNumber' => 'Contact Number',
+    'FormattedContactNumber' => 'Contact Number',
     'EmailAddress' => 'Email'
   );
 
@@ -93,5 +93,45 @@ class Venue extends DataObjectClient {
       'Latitude',
       'Longitude'
     ));
+  }
+
+  /**
+   * Nicely format the contact number.
+   */
+  public function getFormattedContactNumber() {
+    $phoneNumberField = PhoneNumberField::create('null', null, '', true, true, true);
+    $phoneNumberField->setValue($this->obj('ContactNumber'));
+
+    $country = $phoneNumberField->getCountryField()->Value();
+    $area = $phoneNumberField->getAreaField()->Value();
+    $number = $phoneNumberField->getNumberField()->Value();
+    $extension = $phoneNumberField->getExtensionField()->Value();
+
+    $completeNumber = '';
+    if (!empty($country)) {
+        $completeNumber .= '+' . $country . ' ';
+    }
+
+    if (!empty($area)) {
+        $completeNumber .= '(' . $area . ') ';
+    }
+
+    $numberLength = strlen($number);
+    if ($numberLength >= 7) {
+      $cutPoint = intval($numberLength / 2);
+      if ($cutPoint > 4) {
+        $cutPoint = 4;
+      }
+      $completeNumber .= substr($number, 0, $cutPoint) . ' ' . substr($number, $cutPoint);
+    } else {
+      $completeNumber .= $number;
+    }
+
+    /** @skipUpgrade */
+    if (!empty($extension)) {
+        $completeNumber .= ' #' . $extension;
+    }
+
+    return $completeNumber;
   }
 }
