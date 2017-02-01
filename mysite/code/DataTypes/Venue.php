@@ -31,7 +31,8 @@ class Venue extends DataObjectClient {
     'Region' => 'Region',
     'Name' => 'Name',
     'FormattedContactNumber' => 'Contact Number',
-    'EmailAddress' => 'Email'
+    'EmailAddress' => 'Email',
+    'PublishedState' => 'Published State'
   );
 
   private static $searchable_fields = array(

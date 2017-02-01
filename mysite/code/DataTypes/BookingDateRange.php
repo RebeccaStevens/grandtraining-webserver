@@ -28,7 +28,8 @@ class BookingDateRange extends DataObjectClient {
     'Availability' => 'Availability',
     'StartDate.Nice' => 'Start Date',
     'EndDate.Nice' => 'End Date',
-    'Cost.Nice' => 'Cost'
+    'Cost.Nice' => 'Cost',
+    'PublishedState' => 'Published State'
   );
 
   private static $searchable_fields = array(

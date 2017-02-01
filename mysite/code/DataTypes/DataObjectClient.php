@@ -144,4 +144,19 @@ class DataObjectClient extends DataObject {
     }
     return false;
   }
+
+  /**
+   * Get the Published State of this record.
+   *
+   * @return string
+   */
+  public function getPublishedState() {
+    if (!$this->isPublished()) {
+      return 'Draft';
+    }
+    if ($this->stagesDiffer('Stage', 'Live')) {
+      return 'Changes Made';
+    }
+    return 'Published';
+  }
 }

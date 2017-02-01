@@ -43,7 +43,8 @@ class HolidayClass extends DataObjectClient {
     'Title' => 'Title',
     'Level' => 'Level',
     'MinAge' => 'Min Age',
-    'MaxAge' => 'Max Age'
+    'MaxAge' => 'Max Age',
+    'PublishedState' => 'Published State'
   );
 
   private static $searchable_fields = array(

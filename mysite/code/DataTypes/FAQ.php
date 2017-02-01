@@ -14,7 +14,8 @@ class FAQ extends DataObjectClient {
 
   private static $summary_fields = array(
     'Question' => 'Question',
-    'Answer.Summary' => 'Answer'
+    'Answer.Summary' => 'Answer',
+    'PublishedState' => 'Published State'
   );
 
   private static $searchable_fields = array(

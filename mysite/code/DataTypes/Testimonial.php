@@ -20,10 +20,12 @@ class Testimonial extends DataObjectClient {
   private static $summary_fields = array(
     'DateWritten.Nice' => 'Date Written',
     'Author' => 'Author',
-    'Shown.Nice' => 'Show This Testimonial?'
+    'Shown.Nice' => 'Show This Testimonial?',
+    'PublishedState' => 'Published State'
   );
 
   private static $searchable_fields = array(
+    'Shown',
     'Author',
     'DateWritten',
     'Content'
