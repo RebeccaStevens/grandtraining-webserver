@@ -65,7 +65,13 @@ class DataConfigController extends DataController {
         )
       ),
       'links' => array(
-        'bookclass' => '/bookings/booknow/bookclass'
+        'bookclass' => '/bookings/booknow/bookclass',
+        'social' => array(
+          'facebook' => $siteConfig->FacebookLink,
+          'google-plus' => $siteConfig->GooglePlusLink,
+          'twitter' => $siteConfig->TwitterLink,
+          'youtube' => $siteConfig->YouTubeLink
+        )
       ),
       'form-handlers' => array(
         'contact-us' => DataObject::get(ContactUsPage::class)[0]->URLSegment . '/form-handler'
