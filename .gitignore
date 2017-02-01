@@ -11,22 +11,22 @@
 #########
 # SilverStripe Framework, CMS and Modules
 #########
-vendor
-framework
-cms
-asset-admin
-assets
-reports
-graphql
-siteconfig
-gridfieldextensions
-silverstripe-cache
-silverstripe.log
+/vendor
+/framework
+/cms
+/asset-admin
+/assets
+/reports
+/graphql
+/siteconfig
+/gridfieldextensions
+/silverstripe-cache
+/silverstripe.log
 
 #########
 # SilverStripe Themes
 #########
-themes/*
+/themes/*
 
 #########
 # Environment and Deployment
