@@ -62,9 +62,10 @@ abstract class DataController extends Controller {
    * @param Image $image The image to get a placeholder for
    */
   protected function getPlaceholderImage(Image $image = null) {
-    if ($image === null) {
+    if ($image === null || $image->Width == 0 || $image->Height == 0) {
       return null;
     }
+
     $scale = 0.01;
     $minSize = max(16, min($image->Width, $image->Height));
 
