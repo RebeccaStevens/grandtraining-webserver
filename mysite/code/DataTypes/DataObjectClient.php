@@ -123,7 +123,7 @@ class DataObjectClient extends DataObject {
   /**
    * Check if the given text contains profanities.
    *
-   * @return $boolean
+   * @return boolean
    */
   private static function containsProfanity($text) {
     $result = @file_get_contents('http://www.purgomalum.com/service/containsprofanity?text=' . urlencode($text));
