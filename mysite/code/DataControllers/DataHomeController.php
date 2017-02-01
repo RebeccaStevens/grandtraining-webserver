@@ -37,7 +37,7 @@ class DataHomeController extends DataController {
       'heading' => $homePage->TestimonialsCardHeading,
       'list' => array()
     );
-    foreach ($homePage->Testimonials() as $key => $testimonial) {
+    foreach (Testimonial::get() as $key => $testimonial) {
       $testimonials['list'][] = array(
         'by' => $testimonial->Author,
         'date' => $testimonial->DateWritten,

@@ -4,6 +4,7 @@ use SilverStripe\Core\Convert;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\CheckboxSetField;
 use SilverStripe\Forms\DateField;
+use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\RequiredFields;
 
 class Testimonial extends DataObjectClient {
@@ -14,10 +15,6 @@ class Testimonial extends DataObjectClient {
     'Author' => 'Varchar(128)',
     'DateWritten' => 'Date',
     'Content' => 'HTMLText'
-  );
-
-  private static $has_one = array(
-    'Page' => 'HomePage'
   );
 
   private static $summary_fields = array(

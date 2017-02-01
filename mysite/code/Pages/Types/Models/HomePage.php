@@ -31,10 +31,6 @@ class HomePage extends WebAppPage {
     'TestimonialsCardHeading' => 'Varchar(128)'
   );
 
-  private static $has_many = array(
-    'Testimonials' => 'Testimonial'
-  );
-
   private static $many_many = array(
     'CarouselImages' => 'SilverStripe\Assets\Image'
   );
@@ -59,7 +55,7 @@ class HomePage extends WebAppPage {
     $editorField->setRows(15);
 
     $fields->addFieldToTab('Root.Cards.Testimonials', TextField::create('TestimonialsCardHeading', 'Card\'s Heading'));
-    $fields->addFieldToTab('Root.Cards.Testimonials', GridField::create('Testimonials', 'Testimonials', $this->Testimonials(), GridFieldConfig_RecordEditor::create()->addComponent(new GridFieldOrderableRows('SortOrder'))));
+    $fields->addFieldToTab('Root.Cards.Testimonials', GridField::create('Testimonials', 'Testimonials', Testimonial::get(), GridFieldConfig_RecordEditor::create()->addComponent(new GridFieldOrderableRows('SortOrder'))));
 
     return $fields;
   }
