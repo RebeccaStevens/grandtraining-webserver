@@ -13,6 +13,14 @@ use SilverStripe\Forms\ReadonlyField;
  */
 class DataObjectClient extends DataObject {
 
+  private static $versioning = array(
+		'Stage',  'Live'
+	);
+
+  private static $extensions = array(
+		'SilverStripe\\ORM\\Versioning\\Versioned'
+	);
+
   private static $_base64Alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_';
 
   /**
