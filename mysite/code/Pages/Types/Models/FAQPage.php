@@ -10,10 +10,6 @@ class FAQPage extends WebAppPage {
   private static $can_be_root = true;
   private static $allowed_children = array();
 
-  private static $has_many = array(
-    'FAQs' => 'FAQ'
-  );
-
   /**
    * Only allow one instance of this page type.
    */
@@ -24,7 +20,7 @@ class FAQPage extends WebAppPage {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.FAQs', GridField::create('FAQs', 'FAQs', $this->FAQs(), GridFieldConfig_RecordEditor::create()->addComponent(new GridFieldOrderableRows('SortOrder'))));
+    $fields->addFieldToTab('Root.FAQs', GridField::create('FAQs', 'FAQs', FAQ::get(), GridFieldConfig_RecordEditor::create()->addComponent(new GridFieldOrderableRows('SortOrder'))));
 
     return $fields;
   }

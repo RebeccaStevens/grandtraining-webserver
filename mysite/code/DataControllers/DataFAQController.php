@@ -1,6 +1,7 @@
 <?php
 
 use SilverStripe\Control\HTTPRequest;
+use SilverStripe\ORM\Versioning\Versioned;
 
 class DataFAQController extends DataController {
 
@@ -15,10 +16,8 @@ class DataFAQController extends DataController {
       return;
     }
 
-    $faqPage = FAQPage::get()[0];
-
     $faqs = array();
-    foreach ($faqPage->FAQs() as $faq) {
+    foreach (FAQ::get() as $faq) {
       $faqs[] = array(
         'question' => $faq->Question,
         'answer' => $faq->Answer

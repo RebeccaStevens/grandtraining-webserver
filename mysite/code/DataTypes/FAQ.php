@@ -12,10 +12,6 @@ class FAQ extends DataObjectClient {
     'Answer' => 'HTMLText'
   );
 
-  private static $has_one = array(
-    'Page' => 'FAQPage'
-  );
-
   private static $summary_fields = array(
     'Question' => 'Question',
     'Answer.Summary' => 'Answer'
@@ -41,11 +37,4 @@ class FAQ extends DataObjectClient {
       'Answer'
     ));
   }
-
-  public function onBeforeWrite() {
-    if (!isset($this->FAQPage)) {
-      $this->PageID = FAQPage::get()[0]->ID;
-    }
-		parent::onBeforeWrite();
-	}
 }
