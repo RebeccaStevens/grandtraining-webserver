@@ -19,7 +19,8 @@ class FAQ extends DataObjectClient {
   );
 
   private static $searchable_fields = array(
-    'Question' => 'PartialMatchFilter'
+    'Question' => 'PartialMatchFilter',
+    'Answer' => 'PartialMatchFilter'
   );
 
   public function getCMSFields() {
