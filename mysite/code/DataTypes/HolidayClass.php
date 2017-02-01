@@ -70,7 +70,9 @@ class HolidayClass extends DataObjectClient {
       'title' => 'Description',
       'field' => 'SilverStripe\Forms\TextField',
       'filter' => 'PartialMatchFilter'
-    )
+    ),
+    'AvailableVenues.FullName' => array(),
+    'ClassCategories.Title' => array()
   );
 
   public function getCMSFields() {
@@ -109,5 +111,29 @@ class HolidayClass extends DataObjectClient {
       'MaxAge',
       'Description'
     ));
+  }
+
+  public function scaffoldSearchFields($_params = null) {
+    $fields = parent::scaffoldSearchFields($_params);
+
+    $venueDropdown = DropdownField::create(
+      'AvailableVenues.ID',
+      'Available At',
+      Venue::get()->map('ID', 'FullName')->toArray()
+    );
+    $venueDropdown->setEmptyString('(Anywhere/Nowhere)');
+
+    $fields->replaceField('AvailableVenues__FullName', $venueDropdown);
+
+    $categoryDropdown = DropdownField::create(
+      'ClassCategories.ID',
+      'Category',
+      ClassCategoryPage::get()->map('ID', 'Title')->toArray()
+    );
+    $categoryDropdown->setEmptyString('(Any)');
+
+    $fields->replaceField('ClassCategories__Title', $categoryDropdown);
+
+    return $fields;
   }
 }
