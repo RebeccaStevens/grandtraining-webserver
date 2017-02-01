@@ -65,7 +65,7 @@ class SiteConfigExtension extends DataExtension {
       TextField::create('FacebookLink', 'Facebook Page'),
       TextField::create('GooglePlusLink', 'Google+ Account'),
       TextField::create('TwitterLink', 'Twitter Account'),
-      TextField::create('YouTubeLink', 'You Tube Account')
+      TextField::create('YouTubeLink', 'YouTube Account')
     ));
 
     $fields->addFieldsToTab('Root.3rdParty.GoogleMaps', array(
