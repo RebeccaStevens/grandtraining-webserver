@@ -17,7 +17,7 @@ class SiteConfigExtension extends DataExtension {
     'ContactEmail' => 'Varchar(256)',
 
     'FacebookLink' => 'Varchar(256)',
-    'GoogleLink' => 'Varchar(256)',
+    'GooglePlusLink' => 'Varchar(256)',
     'TwitterLink' => 'Varchar(256)',
     'YouTubeLink' => 'Varchar(256)',
 
@@ -63,7 +63,7 @@ class SiteConfigExtension extends DataExtension {
     $fields->addFieldsToTab('Root.Social', array(
       HeaderField::create(null, 'Social Media Networks'),
       TextField::create('FacebookLink', 'Facebook Page'),
-      TextField::create('GoogleLink', 'Google+ Account'),
+      TextField::create('GooglePlusLink', 'Google+ Account'),
       TextField::create('TwitterLink', 'Twitter Account'),
       TextField::create('YouTubeLink', 'You Tube Account')
     ));
