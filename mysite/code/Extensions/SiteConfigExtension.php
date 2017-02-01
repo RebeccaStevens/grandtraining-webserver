@@ -19,6 +19,7 @@ class SiteConfigExtension extends DataExtension {
     'FacebookLink' => 'Varchar(256)',
     'GoogleLink' => 'Varchar(256)',
     'TwitterLink' => 'Varchar(256)',
+    'YouTubeLink' => 'Varchar(256)',
 
     'GoogleMapsZoom' => 'Int',
     'GoogleMapsApiKey' => 'Varchar',
@@ -63,7 +64,8 @@ class SiteConfigExtension extends DataExtension {
       HeaderField::create(null, 'Social Media Networks'),
       TextField::create('FacebookLink', 'Facebook Page'),
       TextField::create('GoogleLink', 'Google+ Account'),
-      TextField::create('TwitterLink', 'Twitter Account')
+      TextField::create('TwitterLink', 'Twitter Account'),
+      TextField::create('YouTubeLink', 'You Tube Account')
     ));
 
     $fields->addFieldsToTab('Root.3rdParty.GoogleMaps', array(
