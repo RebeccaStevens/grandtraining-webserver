@@ -67,7 +67,7 @@ abstract class DataController extends Controller {
     }
 
     $scale = 0.01;
-    $minSize = max(16, min($image->Width, $image->Height));
+    $minSize = max(1, min(16, min($image->Width, $image->Height)));
 
     $width = $image->getWidth() * $scale;
     $height = $image->getHeight() * $scale;
