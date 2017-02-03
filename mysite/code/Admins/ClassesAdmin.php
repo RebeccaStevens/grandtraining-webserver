@@ -12,5 +12,5 @@ class ClassesAdmin extends ModelAdmin {
     'HolidayClass'
   );
 
-  // private static $menu_icon = '';
+  private static $menu_icon = 'mysite/cms-images/menu-icons/classes.png';
 }

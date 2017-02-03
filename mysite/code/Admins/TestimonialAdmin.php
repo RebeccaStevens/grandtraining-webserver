@@ -12,5 +12,5 @@ class TestimonialAdmin extends ModelAdmin {
     'Testimonial'
   );
 
-  // private static $menu_icon = '';
+  private static $menu_icon = 'mysite/cms-images/menu-icons/testimonials.png';
 }

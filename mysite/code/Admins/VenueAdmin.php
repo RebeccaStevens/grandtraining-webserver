@@ -12,5 +12,5 @@ class VenueAdmin extends ModelAdmin {
     'Venue'
   );
 
-  // private static $menu_icon = '';
+  private static $menu_icon = 'mysite/cms-images/menu-icons/venues.png';
 }
