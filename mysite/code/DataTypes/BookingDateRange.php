@@ -82,13 +82,19 @@ class BookingDateRange extends DataObjectClient {
   }
 
   public function getCMSValidator() {
-    return new RequiredFields(array(
-      'StartDate',
-      'EndDate',
-      'Cost',
-      'Availability',
-      'HolidayClassID'
-    ));
+    return new class(array('StartDate','EndDate','Cost','Availability','HolidayClassID')) extends RequiredFields {
+
+      function php($data) {
+        $valid = parent::php($data);
+
+        if (!isset($data['Cost']) || $data['Cost'] <= 0) {
+          $valid = false;
+          $this->validationError('Cost','"Cost" must be grater than $0.00');
+        }
+
+        return $valid;
+      }
+    };
   }
 }
 
