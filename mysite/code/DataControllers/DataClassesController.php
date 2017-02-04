@@ -97,12 +97,26 @@ class DataClassesController extends DataController {
               foreach (BookingDateRange::get()->filter(array(
                 'HolidayClassID' => $class->ID,
                 'StartDate:GreaterThanOrEqual' => date('c')
-                )) as $date) {
+                ))->sort('StartDate') as $date) {
+                $excludes = array();
+                foreach ($date->Excludes()->sort('Date') as $excludedDateDO) {
+                  $excludedDateStr = $excludedDateDO->Date;
+
+                  $startDate = date_create($date->StartDate);
+                  $endDate = date_create($date->EndDate);
+                  $excludedDate = date_create($excludedDateStr);
+
+                  // make sure the excluded date is between $startDate and $endDate
+                  if ($excludedDate > $startDate && $excludedDate < $endDate) {
+                    $excludes[] = $excludedDateStr;
+                  }
+                }
+
                 $dates[] = array(
                   'id' => $date->ClientFormattedID(),
                   'start-date' => $date->StartDate,
                   'end-date' => $date->EndDate,
-                  'excludes' => array(),
+                  'excludes' => $excludes,
                   'cost' => $date->Cost,
                   'availability' => strtolower($date->Availability)
                 );
