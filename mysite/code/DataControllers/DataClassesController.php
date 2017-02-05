@@ -96,6 +96,7 @@ class DataClassesController extends DataController {
               $dates = array();
               foreach (BookingDateRange::get()->filter(array(
                 'HolidayClassID' => $class->ID,
+                'VenueID' => $classVenue->ID,
                 'StartDate:GreaterThanOrEqual' => date('c')
                 ))->sort('StartDate') as $date) {
                 $excludes = array();

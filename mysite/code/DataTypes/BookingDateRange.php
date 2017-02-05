@@ -23,7 +23,8 @@ class BookingDateRange extends DataObjectClient {
   );
 
   private static $has_one = array(
-    'HolidayClass' => 'HolidayClass'
+    'HolidayClass' => 'HolidayClass',
+    'Venue' => 'Venue',
   );
 
   private static $has_many = array(
@@ -50,7 +51,8 @@ class BookingDateRange extends DataObjectClient {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.Main', DropdownField::create('HolidayClassID', 'Class', HolidayClass::get()->map('ID', 'Title')->toArray()));
+    $fields->addFieldToTab('Root.Main', DropdownField::create('HolidayClassID', 'Class', HolidayClass::get()->sort('Title')->map('ID', 'Title')->toArray())->setEmptyString('(Class)'));
+    $fields->addFieldToTab('Root.Main', DropdownField::create('VenueID', 'Venue', Venue::get()->sort('Region, FullName')->map('ID', 'FullName')->toArray())->setEmptyString('(Venue)'));
 
     $startDateField = DateField::create('StartDate', 'Start Date')
       ->setConfig('dateformat', 'dd/MM/yyyy')
@@ -82,7 +84,7 @@ class BookingDateRange extends DataObjectClient {
   }
 
   public function getCMSValidator() {
-    return new class(array('StartDate','EndDate','Cost','Availability','HolidayClassID')) extends RequiredFields {
+    return new class(array('HolidayClassID', 'VenueID', 'StartDate','EndDate','Cost','Availability','HolidayClassID')) extends RequiredFields {
 
       function php($data) {
         $valid = parent::php($data);
