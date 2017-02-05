@@ -25,7 +25,8 @@ class ContactMessage extends DataObject {
     'Name' => 'Sender\'s Name',
     'Location' => 'Location',
     'Subject' => 'Subject',
-    'DealtWith.Nice' => 'Dealt With'
+    'DealtWith.Nice' => 'Dealt With',
+    'Created.Nice' => 'Received At'
   );
 
   private static $searchable_fields = array(
