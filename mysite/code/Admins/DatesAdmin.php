@@ -12,5 +12,5 @@ class DatesAdmin extends ModelAdmin {
     'BookingDateRange'
   );
 
-  private static $menu_icon = 'mysite/cms-images/menu-icons/calendar.png';
+  private static $menu_icon = 'mysite/cms-assets/images/menu-icons/calendar.png';
 }

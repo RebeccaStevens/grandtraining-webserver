@@ -13,7 +13,7 @@ class ContactAdmin extends ModelAdmin {
     'ContactMessage'
   );
 
-  private static $menu_icon = 'mysite/cms-images/menu-icons/messages.png';
+  private static $menu_icon = 'mysite/cms-assets/images/menu-icons/messages.png';
 }
 
 class ContactAdminExtension extends Extension {

@@ -12,7 +12,7 @@ class FAQAdmin extends ModelAdmin {
     'FAQ'
   );
 
-  private static $menu_icon = 'mysite/cms-images/menu-icons/faq.png';
+  private static $menu_icon = 'mysite/cms-assets/images/menu-icons/faq.png';
 
   public function getEditForm($id = null, $fields = null) {
     $form = parent::getEditForm($id, $fields);
