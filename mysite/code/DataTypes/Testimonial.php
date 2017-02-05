@@ -61,9 +61,10 @@ class Testimonial extends DataObjectClient {
   }
 
   public function GridFieldRowClasses() {
+    $classes = parent::GridFieldRowClasses();
     if ($this->Shown) {
-      return array('shown');
+      $classes[] = 'shown';
     }
-    return array();
+    return $classes;
   }
 }

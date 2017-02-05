@@ -150,7 +150,7 @@ class BookingDateRange extends DataObjectClient {
   }
 
   public function GridFieldRowClasses() {
-    $classes = array();
+    $classes = parent::GridFieldRowClasses();
 
     switch ($this->getRunningStatus()) {
       case 'Past Class':

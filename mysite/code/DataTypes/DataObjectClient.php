@@ -159,4 +159,22 @@ class DataObjectClient extends DataObject {
     }
     return 'Published';
   }
+
+  public function GridFieldRowClasses() {
+    $classes = array();
+
+    switch ($this->getPublishedState()) {
+      case 'Draft':
+        $classes[] = 'draft';
+        break;
+      case 'Changes Made':
+        $classes[] = 'changes-made';
+        break;
+      case 'Published':
+        $classes[] = 'published';
+        break;
+    }
+
+    return $classes;
+  }
 }
