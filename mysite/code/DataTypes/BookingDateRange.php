@@ -55,8 +55,16 @@ class BookingDateRange extends DataObjectClient {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.Main', DropdownField::create('HolidayClassID', 'Class', HolidayClass::get()->map('ID', 'Title')->toArray())->setEmptyString('(Class)'));
-    $fields->addFieldToTab('Root.Main', DropdownField::create('VenueID', 'Venue', Venue::get()->map('ID', 'FullName')->toArray())->setEmptyString('(Venue)'));
+    $classesField = DropdownField::create('HolidayClassID', 'Class', HolidayClass::get()->map('ID', 'Title')->toArray())->setEmptyString('(Class)');
+    $venuesField = DropdownField::create('VenueID', 'Venue', Venue::get()->map('ID', 'FullName')->toArray())->setEmptyString('(Venue)');
+
+    if ($this->isPublished()) {
+      $classesField = $classesField->performReadonlyTransformation();
+      $venuesField = $venuesField->performReadonlyTransformation();
+    }
+
+    $fields->addFieldToTab('Root.Main', $classesField);
+    $fields->addFieldToTab('Root.Main', $venuesField);
 
     $startDateField = DateField::create('StartDate', 'Start Date')
       ->setConfig('dateformat', 'dd/MM/yyyy')
