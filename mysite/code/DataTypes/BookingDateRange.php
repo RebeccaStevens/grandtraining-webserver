@@ -44,12 +44,12 @@ class BookingDateRange extends DataObjectClient {
   );
 
   private static $searchable_fields = array(
+    'HolidayClass.Title' => 'ExactMatchFilter',
+    'Venue.FullName' => 'ExactMatchFilter',
     'Availability' => 'ExactMatchFilter',
     'StartDate' => 'ExactMatchFilter',
     'EndDate' => 'ExactMatchFilter',
-    'Cost' => 'ExactMatchFilter',
-    'HolidayClass.Title' => 'ExactMatchFilter',
-    'Venue.FullName' => 'ExactMatchFilter'
+    'Cost' => 'ExactMatchFilter'
   );
 
   public function getCMSFields() {
