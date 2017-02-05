@@ -86,7 +86,7 @@ class HolidayClass extends DataObjectClient {
     $categories = ListboxField::create('ClassCategories', 'Class Categories')->setSource(ClassCategoryPage::get()->map('ID', 'Title')->toArray());
     $categories->setDescription('The categories this class should be shown in.');
 
-    $availableVenues = ListboxField::create('AvailableVenues', 'Available Venues')->setSource(Venue::get()->map('ID', 'FullName')->toArray());
+    $availableVenues = ListboxField::create('AvailableVenues', 'Available Venues')->setSource(Venue::get()->sort('Region, FullName')->map('ID', 'FullName')->toArray());
     $availableVenues->setDescription('The venues at which this class is avaliable.');
 
     $fields->addFieldsToTab('Root.Main', array(
@@ -119,7 +119,7 @@ class HolidayClass extends DataObjectClient {
     $venueDropdown = DropdownField::create(
       'AvailableVenues.ID',
       'Available At',
-      Venue::get()->map('ID', 'FullName')->toArray()
+      Venue::get()->sort('Region, FullName')->map('ID', 'FullName')->toArray()
     );
     $venueDropdown->setEmptyString('(Anywhere/Nowhere)');
 
