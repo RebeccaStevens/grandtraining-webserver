@@ -83,7 +83,9 @@ class BookingDateRange extends DataObjectClient {
 
     $fields->addFieldToTab('Root.Main', CurrencyField::create('Cost', 'Cost'));
 
-    $fields->addFieldToTab('Root.Main', DropdownField::create('Availability', 'Availability', singleton(__CLASS__)->dbObject('Availability')->enumValues()));
+    if ($this->isPublished()) {
+      $fields->addFieldToTab('Root.Main', DropdownField::create('Availability', 'Availability', singleton(__CLASS__)->dbObject('Availability')->enumValues()));
+    }
 
     if ($this->isInDB()) {
       $fields->addFieldToTab('Root.Main', GridField::create('Excludes', 'Excluded Dates', $this->Excludes(), GridFieldConfig_RecordEditor::create()));
