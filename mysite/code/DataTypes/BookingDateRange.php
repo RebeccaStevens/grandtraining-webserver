@@ -129,6 +129,30 @@ class BookingDateRange extends DataObjectClient {
         return array();
     }
   }
+
+  public function scaffoldSearchFields($_params = null) {
+    $fields = parent::scaffoldSearchFields($_params);
+
+    $holidayClassDropdown = DropdownField::create(
+      'HolidayClass.ID',
+      'Class',
+      HolidayClass::get()->map('ID', 'Title')->toArray()
+    );
+    $holidayClassDropdown->setEmptyString('(Any)');
+
+    $fields->replaceField('HolidayClass__Title', $holidayClassDropdown);
+
+    $venueDropdown = DropdownField::create(
+      'Venue.ID',
+      'Venue',
+      Venue::get()->map('ID', 'FullName')->toArray()
+    );
+    $venueDropdown->setEmptyString('(Any)');
+
+    $fields->replaceField('Venue__FullName', $venueDropdown);
+
+    return $fields;
+  }
 }
 
 class ExcludedDate extends DataObject {
