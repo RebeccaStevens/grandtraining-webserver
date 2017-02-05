@@ -17,8 +17,15 @@
 }
 [data-class="BookingDateRange"].future-class:not(:hover) {
 }
-[data-class="BookingDateRange"].running-class:not(:hover) {
+[data-class="BookingDateRange"].running-class:not(.canceled-class):not(:hover) {
   background: #f7fcef !important;
+}
+[data-class="BookingDateRange"].available-class:not(:hover) {
+}
+[data-class="BookingDateRange"].full-class:not(:hover) {
+}
+[data-class="BookingDateRange"].canceled-class:not(:hover) {
+  text-decoration: line-through;
 }
 
 [data-class="Testimonial"].shown:not(:hover) {

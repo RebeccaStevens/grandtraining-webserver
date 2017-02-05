@@ -150,16 +150,33 @@ class BookingDateRange extends DataObjectClient {
   }
 
   public function GridFieldRowClasses() {
+    $classes = array();
+
     switch ($this->getRunningStatus()) {
       case 'Past Class':
-        return array('past-class');
+        $classes[] = 'past-class';
+        break;
       case 'Running':
-        return array('running-class');
+        $classes[] = 'running-class';
+        break;
       case 'Future Class':
-        return array('future-class');
-      default:
-        return array();
+        $classes[] = 'future-class';
+        break;
     }
+
+    switch ($this->Availability) {
+      case 'Available':
+        $classes[] = 'available-class';
+        break;
+      case 'Canceled':
+        $classes[] = 'canceled-class';
+        break;
+      case 'Full':
+        $classes[] = 'full-class';
+        break;
+    }
+
+    return $classes;
   }
 
   public function scaffoldSearchFields($_params = null) {
