@@ -108,6 +108,23 @@ class BookingDateRange extends DataObjectClient {
     };
   }
 
+  public function validate() {
+    $result = parent::validate();
+
+    $startDate = date_create($this->StartDate);
+    $endDate = date_create($this->EndDate);
+
+    if ($endDate < $startDate) {
+      $result->addError("Invalid End Date: The end date cannot be before the start date: {$startDate->format('d/m/Y')}.");
+    }
+
+    if ($this->Cost <= 0) {
+      $result->addError("Invalid Cost: The cost must be grater than $0.00.");
+    }
+
+    return $result;
+  }
+
   public function getRunningStatus() {
     $startDate = date_create($this->StartDate);
     $endDate = date_create($this->EndDate);
