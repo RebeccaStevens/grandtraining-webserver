@@ -18,9 +18,9 @@ class DataContactUsController extends DataController {
     $contactUsPage = ContactUsPage::get()[0];
 
     $locations = array();
-    foreach (Venue::get() as $venue) {
+    foreach (Venue::get()->sort('Region')->column('Region') as $region) {
       $locations[] = array(
-        'fullname' => $venue->FullName
+        'fullname' => $region
       );
     }
 
