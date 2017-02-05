@@ -15,7 +15,7 @@
 }
 [data-class="BookingDateRange"].future-class:not(:hover) {
 }
-[data-class="BookingDateRange"].running-class:not(.canceled-class):not(:hover) {
+[data-class="BookingDateRange"].running-class:not(.draft):not(.canceled-class):not(:hover) {
   background: #f7fcef !important;
 }
 [data-class="BookingDateRange"].available-class:not(:hover) {
