@@ -20,3 +20,7 @@
 [data-class="BookingDateRange"].running-class:not(:hover) {
   background: #f7fcef !important;
 }
+
+[data-class="Testimonial"].shown:not(:hover) {
+  background: #f7fcef !important;
+}
