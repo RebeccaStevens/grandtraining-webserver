@@ -58,9 +58,10 @@ class ContactMessage extends DataObject {
   }
 
   public function GridFieldRowClasses() {
+    $classes = array();
     if ($this->DealtWith) {
-      return array('dealt-with-message');
+      $classes[] = 'dealt-with-message';
     }
-    return array();
+    return $classes;
   }
 }
