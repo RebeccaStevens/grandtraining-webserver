@@ -39,6 +39,8 @@ class HolidayClass extends DataObjectClient {
     'MaxAge' => 17
   );
 
+  private static $default_sort = 'Title';
+
   private static $summary_fields = array(
     'Title' => 'Title',
     'Level' => 'Level',

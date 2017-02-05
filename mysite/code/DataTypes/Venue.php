@@ -26,6 +26,8 @@ class Venue extends DataObjectClient {
     'AvailableHolidayClasses' => 'HolidayClass'
   );
 
+  private static $default_sort = 'Region, FullName';
+
   private static $summary_fields = array(
     'FullName' => 'Long Name',
     'Region' => 'Region',

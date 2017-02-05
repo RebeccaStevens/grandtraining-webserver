@@ -12,6 +12,8 @@ class FAQ extends DataObjectClient {
     'Answer' => 'HTMLText'
   );
 
+  private static $default_sort = 'SortOrder';
+
   private static $summary_fields = array(
     'Question' => 'Question',
     'Answer.Summary' => 'Answer',

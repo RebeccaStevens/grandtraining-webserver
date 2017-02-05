@@ -17,6 +17,8 @@ class Testimonial extends DataObjectClient {
     'Content' => 'HTMLText'
   );
 
+  private static $default_sort = 'SortOrder';
+
   private static $summary_fields = array(
     'DateWritten.Nice' => 'Date Written',
     'Author' => 'Author',

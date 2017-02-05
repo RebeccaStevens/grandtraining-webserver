@@ -31,6 +31,8 @@ class BookingDateRange extends DataObjectClient {
     'Excludes' => 'ExcludedDate'
   );
 
+  private static $default_sort = 'StartDate DESC';
+
   private static $summary_fields = array(
     'HolidayClass.Title' => 'Holiday Class',
     'Availability' => 'Availability',

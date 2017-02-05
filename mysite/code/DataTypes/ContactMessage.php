@@ -19,6 +19,8 @@ class ContactMessage extends DataObject {
     'Notes' => 'HTMLText'
   );
 
+  private static $default_sort = 'DealtWith, Created DESC';
+
   private static $summary_fields = array(
     'Name' => 'Sender\'s Name',
     'Location' => 'Location',
