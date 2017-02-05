@@ -15,7 +15,7 @@ class ClassesWithNoVenues extends Report {
   public function sourceRecords($params = null) {
     $result = ArrayList::create();
 
-    foreach (HolidayClass::get()->sort('Title') as $hc) {
+    foreach (HolidayClass::get() as $hc) {
       if ($hc->AvailableVenues()->count() === 0) {
         $result->push($hc);
       }

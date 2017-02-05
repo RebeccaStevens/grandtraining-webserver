@@ -55,8 +55,8 @@ class BookingDateRange extends DataObjectClient {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->addFieldToTab('Root.Main', DropdownField::create('HolidayClassID', 'Class', HolidayClass::get()->sort('Title')->map('ID', 'Title')->toArray())->setEmptyString('(Class)'));
-    $fields->addFieldToTab('Root.Main', DropdownField::create('VenueID', 'Venue', Venue::get()->sort('Region, FullName')->map('ID', 'FullName')->toArray())->setEmptyString('(Venue)'));
+    $fields->addFieldToTab('Root.Main', DropdownField::create('HolidayClassID', 'Class', HolidayClass::get()->map('ID', 'Title')->toArray())->setEmptyString('(Class)'));
+    $fields->addFieldToTab('Root.Main', DropdownField::create('VenueID', 'Venue', Venue::get()->map('ID', 'FullName')->toArray())->setEmptyString('(Venue)'));
 
     $startDateField = DateField::create('StartDate', 'Start Date')
       ->setConfig('dateformat', 'dd/MM/yyyy')
@@ -78,7 +78,7 @@ class BookingDateRange extends DataObjectClient {
     $fields->addFieldToTab('Root.Main', DropdownField::create('Availability', 'Availability', singleton(__CLASS__)->dbObject('Availability')->enumValues()));
 
     if ($this->isInDB()) {
-      $fields->addFieldToTab('Root.Main', GridField::create('Excludes', 'Excluded Dates', $this->Excludes()->sort('Date'), GridFieldConfig_RecordEditor::create()));
+      $fields->addFieldToTab('Root.Main', GridField::create('Excludes', 'Excluded Dates', $this->Excludes(), GridFieldConfig_RecordEditor::create()));
     } else {
       $fields->addFieldToTab('Root.Main', HeaderField::create(null, 'Excluded Dates'));
       $fields->addFieldToTab('Root.Main', LabelField::create(null, 'Excluded Dates can only be added after this Booking Date Range has been created.')->addExtraClass('form__field-holder form__field-extra-label'));
@@ -164,6 +164,8 @@ class ExcludedDate extends DataObject {
   private static $has_one = array(
     'BookingDateRange' => 'BookingDateRange'
   );
+
+  private static $default_sort = 'Date';
 
   private static $summary_fields = array(
     'Date.Nice' => 'Date'
