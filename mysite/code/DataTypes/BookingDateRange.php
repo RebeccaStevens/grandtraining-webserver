@@ -35,6 +35,7 @@ class BookingDateRange extends DataObjectClient {
 
   private static $summary_fields = array(
     'HolidayClass.Title' => 'Holiday Class',
+    'Venue.FullName' => 'Venue',
     'Availability' => 'Availability',
     'StartDate.Nice' => 'Start Date',
     'EndDate.Nice' => 'End Date',
@@ -47,7 +48,8 @@ class BookingDateRange extends DataObjectClient {
     'StartDate' => 'ExactMatchFilter',
     'EndDate' => 'ExactMatchFilter',
     'Cost' => 'ExactMatchFilter',
-    'HolidayClass.Title' => 'ExactMatchFilter'
+    'HolidayClass.Title' => 'ExactMatchFilter',
+    'Venue.FullName' => 'ExactMatchFilter'
   );
 
   public function getCMSFields() {
