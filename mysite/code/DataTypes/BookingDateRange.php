@@ -38,7 +38,7 @@ class BookingDateRange extends DataObjectClient {
     'Availability' => 'Availability',
     'StartDate.Nice' => 'Start Date',
     'EndDate.Nice' => 'End Date',
-    'Cost.Nice' => 'Cost',
+    'RunningStatus' => 'Running',
     'PublishedState' => 'Published State'
   );
 
@@ -99,6 +99,33 @@ class BookingDateRange extends DataObjectClient {
         return $valid;
       }
     };
+  }
+
+  public function getRunningStatus() {
+    $startDate = date_create($this->StartDate);
+    $endDate = date_create($this->EndDate);
+    $now = date_create(date_create()->format('Y-m-d'));
+
+    if ($now >= $startDate && $now <= $endDate) {
+      return 'Running';
+    }
+    if ($now < $startDate) {
+      return 'Future Class';
+    }
+    return 'Past Class';
+  }
+
+  public function GridFieldRowClasses() {
+    switch ($this->getRunningStatus()) {
+      case 'Past Class':
+        return array('past-class');
+      case 'Running':
+        return array('running-class');
+      case 'Future Class':
+        return array('future-class');
+      default:
+        return array();
+    }
   }
 }
 

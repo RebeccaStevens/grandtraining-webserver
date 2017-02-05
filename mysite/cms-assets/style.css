@@ -6,3 +6,15 @@
   color: #8A8A8A;
   font-style: italic;
 }
+
+[data-class="BookingDateRange"].past-class:not(:hover) {
+  background-color: #FBFBFC !important;
+  color: #8A8A8A;
+  font-style: italic;
+  text-decoration: line-through;
+}
+[data-class="BookingDateRange"].future-class:not(:hover) {
+}
+[data-class="BookingDateRange"].running-class:not(:hover) {
+  background: #f7fcef !important;
+}
