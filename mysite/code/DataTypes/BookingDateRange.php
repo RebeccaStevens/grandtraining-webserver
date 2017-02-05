@@ -93,6 +93,11 @@ class BookingDateRange extends DataObjectClient {
       function php($data) {
         $valid = parent::php($data);
 
+        if (!isset($data['EndDate']) || date_create($data['EndDate']) < date_create($data['StartDate'])) {
+          $valid = false;
+          $this->validationError('EndDate','"EndDate" cannot be before "StartDate"');
+        }
+
         if (!isset($data['Cost']) || $data['Cost'] <= 0) {
           $valid = false;
           $this->validationError('Cost','"Cost" must be grater than $0.00');
