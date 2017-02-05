@@ -1,6 +1,12 @@
 SilverStripe\SiteConfig\SiteConfig:
   extensions:
     - SiteConfigExtension
+SilverStripe\Forms\GridField\GridField:
+  extensions:
+    - GridFieldExtension
 ContactAdmin:
   extensions:
     - ContactAdminExtension
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - mysite/cms-assets/style.css

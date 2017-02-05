@@ -1,0 +1,8 @@
+[data-class="ContactMessage"]:not(.dealt-with-message) {
+  font-weight: bold;
+}
+
+[data-class="ContactMessage"].dealt-with-message {
+  color: #8A8A8A;
+  font-style: italic;
+}
