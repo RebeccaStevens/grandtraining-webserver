@@ -6,6 +6,9 @@ use SilverStripe\Forms\RequiredFields;
 
 class FAQ extends DataObjectClient {
 
+  private static $singular_name = 'FAQ';
+  private static $plural_name = 'FAQs';
+
   private static $db = array(
     'SortOrder' => 'Int',
     'Question' => 'Varchar(256)',

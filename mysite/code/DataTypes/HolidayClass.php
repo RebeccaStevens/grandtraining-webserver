@@ -10,6 +10,9 @@ use SilverStripe\Forms\RequiredFields;
 
 class HolidayClass extends DataObjectClient {
 
+  private static $singular_name = 'Class';
+  private static $plural_name = 'Classes';
+
   private static $db = array(
     'Title' => 'Varchar(128)',
     'Level' => 'Enum(\'Beginner, Intermediate, Advanced\',\'Beginner\')',
