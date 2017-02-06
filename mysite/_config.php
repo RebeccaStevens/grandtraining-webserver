@@ -22,6 +22,7 @@ if (!defined('SITE_URL')) {
 }
 
 require_once('code/Constants.php');
+require_once('code/Security.php');
 
 Report::add_excluded_reports(array(
   'SilverStripe\\CMS\\Reports\\BrokenFilesReport',

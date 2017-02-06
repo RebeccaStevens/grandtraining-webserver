@@ -30,10 +30,6 @@ class ContactUsPageController extends WebAppPageController {
       return;
     }
 
-    if (Director::isDev()) {
-      header('Access-Control-Allow-Origin: *');
-    }
-
     $form = $this->contactUsForm()->loadDataFrom($_POST);
 
     if (!$form->validationResult()->isValid()) {
