@@ -8,21 +8,21 @@
   font-style: italic;
 }
 
-[data-class="BookingDateRange"].past-class:not(:hover) {
+[data-class="BookingDate"].past-class:not(:hover) {
   background-color: #FBFBFC !important;
   color: #8A8A8A;
   font-style: italic;
 }
-[data-class="BookingDateRange"].future-class:not(:hover) {
+[data-class="BookingDate"].future-class:not(:hover) {
 }
-[data-class="BookingDateRange"].running-class:not(.draft):not(.canceled-class):not(:hover) {
+[data-class="BookingDate"].running-class:not(.draft):not(.canceled-class):not(:hover) {
   background: #f7fcef !important;
 }
-[data-class="BookingDateRange"].available-class:not(:hover) {
+[data-class="BookingDate"].available-class:not(:hover) {
 }
-[data-class="BookingDateRange"].full-class:not(:hover) {
+[data-class="BookingDate"].full-class:not(:hover) {
 }
-[data-class="BookingDateRange"].canceled-class:not(:hover) {
+[data-class="BookingDate"].canceled-class:not(:hover) {
   text-decoration: line-through;
 }
 

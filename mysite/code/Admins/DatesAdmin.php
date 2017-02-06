@@ -9,7 +9,7 @@ class DatesAdmin extends ModelAdmin {
   private static $url_segment = 'dates';
 
   private static $managed_models = array(
-    'BookingDateRange'
+    'BookingDate'
   );
 
   private static $menu_icon = 'mysite/cms-assets/images/menu-icons/calendar.png';

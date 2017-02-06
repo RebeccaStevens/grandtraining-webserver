@@ -13,7 +13,7 @@ use SilverStripe\Forms\LabelField;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 
-class BookingDateRange extends DataObjectClient {
+class BookingDate extends DataObjectClient {
 
   private static $db = array(
     'StartDate' => 'Date',
@@ -211,7 +211,7 @@ class ExcludedDate extends DataObject {
   );
 
   private static $has_one = array(
-    'BookingDateRange' => 'BookingDateRange'
+    'BookingDate' => 'BookingDate'
   );
 
   private static $default_sort = 'Date';
@@ -227,9 +227,9 @@ class ExcludedDate extends DataObject {
   public function getCMSFields() {
     $fields = parent::getCMSFields();
 
-    $fields->removeFieldFromTab('Root.Main', 'BookingDateRangeID');
+    $fields->removeFieldFromTab('Root.Main', 'BoBookingDate');
 
-    $fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Booking Date', $this->BookingDateRange()->ClientFormattedID()));
+    $fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Booking Date', $this->BooBookingDate>ClientFormattedID()));
 
     $dateField = DateField::create('Date', 'Date')
       ->setConfig('dateformat', 'dd/MM/yyyy')
@@ -252,8 +252,7 @@ class ExcludedDate extends DataObject {
   public function validate() {
     $result = parent::validate();
 
-    $BDR = $this->BookingDateRange();
-
+    $BDR = $this->BookingDate();
     $startDate = date_create($BDR->StartDate);
     $endDate = date_create($BDR->EndDate);
     $date = date_create($this->Date);

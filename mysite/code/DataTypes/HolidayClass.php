@@ -23,7 +23,7 @@ class HolidayClass extends DataObjectClient {
   );
 
   private static $has_many = array(
-    'BookingDates' => 'BookingDateRange'
+    'BookingDates' => 'BookingDate'
   );
 
   private static $many_many = array(

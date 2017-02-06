@@ -94,7 +94,7 @@ class DataClassesController extends DataController {
               $sizedImage = $class->Banner()->Fill(700, 140);
 
               $dates = array();
-              foreach (BookingDateRange::get()->filter(array(
+              foreach (BookingDate::get()->filter(array(
                 'HolidayClassID' => $class->ID,
                 'VenueID' => $classVenue->ID,
                 'StartDate:GreaterThanOrEqual' => date('c')
