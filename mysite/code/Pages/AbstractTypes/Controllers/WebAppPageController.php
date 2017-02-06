@@ -6,6 +6,14 @@ use SilverStripe\SiteConfig\SiteConfig;
 class WebAppPageController extends ContentController {
 
   /**
+   * The page isn't on this site so it can't be initialised
+   */
+  public function init() {
+    parent::init();
+    $this->httpError(404);
+  }
+
+  /**
    * Checks if the Recaptcha was successful.
    *
    * @param {String} - The response from the client
