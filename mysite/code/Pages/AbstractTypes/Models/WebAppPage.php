@@ -2,10 +2,11 @@
 
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\ReadonlyField;
+use SilverStripe\Control\Controller;
 
 class WebAppPage extends SiteTree {
 
-	public $WebAppPageName = null;
+  public $WebAppPageName = null;
 
   /**
    * This is an abstract class.
@@ -15,14 +16,25 @@ class WebAppPage extends SiteTree {
     return false;
   }
 
-	public function getCMSFields() {
-		$fields = parent::getCMSFields();
+  public function getCMSFields() {
+    $fields = parent::getCMSFields();
 
-		$fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Web App Page Name', $this->WebAppPageName), 'Title');
+    $fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Web App Page Name', $this->WebAppPageName), 'Title');
 
-		$fields->removeFieldFromTab('Root.Main', 'Content');
-		$fields->removeFieldFromTab('Root.Main', 'Metadata');
+    $urlSegment = $fields->fieldByName('Root.Main.URLSegment');
+    $urlSegment->setURLPrefix(SITE_URL);
+
+    $fields->removeFieldFromTab('Root.Main', 'Content');
+    $fields->removeFieldFromTab('Root.Main', 'Metadata');
 
     return $fields;
+  }
+
+  public function AbsoluteLink($action = null) {
+    return Controller::join_links(SITE_URL, $this->RelativeLink($action));
+  }
+
+  public function PreviewLink($action = null) {
+    return $this->AbsoluteLink($action);
   }
 }

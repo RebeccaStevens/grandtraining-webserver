@@ -1,6 +1,7 @@
 <?php
 
 use SilverStripe\Reports\Report;
+use SilverStripe\Control\Director;
 
 global $project;
 $project = 'mysite';
@@ -10,6 +11,15 @@ $database = 'ss_grandtraining';
 
 // Use _ss_environment.php file for configuration
 require_once('conf/ConfigureFromEnv.php');
+
+if (!defined('SITE_URL')) {
+  header("HTTP/1.1 500 Internal Server Error");
+  if (Director::isLive()) {
+    die('500 Internal Server Error');
+  } else {
+    die('SITE_URL is not defined');
+  }
+}
 
 require_once('code/Constants.php');
 
