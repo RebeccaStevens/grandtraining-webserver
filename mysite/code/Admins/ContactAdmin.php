@@ -14,6 +14,8 @@ class ContactAdmin extends ModelAdmin {
   );
 
   private static $menu_icon = 'mysite/cms-assets/images/menu-icons/messages.png';
+
+  public $showImportForm = false;
 }
 
 class ContactAdminExtension extends Extension {
