@@ -1,7 +1,6 @@
 <?php
 
 use SilverStripe\Admin\ModelAdmin;
-use SilverStripe\Core\Extension;
 
 class ContactAdmin extends ModelAdmin {
 
@@ -16,11 +15,12 @@ class ContactAdmin extends ModelAdmin {
   private static $menu_icon = 'mysite/cms-assets/images/menu-icons/messages.png';
 
   public $showImportForm = false;
-}
 
-class ContactAdminExtension extends Extension {
-  function updateEditForm(&$form) {
+  public function getEditForm($id = null, $fields = null) {
+    $form = parent::getEditForm($id, $fields);
+
     $c = $form->fields->dataFieldByName('ContactMessage');
     $c->config->removeComponent($c->config->getComponentByType('SilverStripe\Forms\GridField\GridFieldAddNewButton'));
+    return $form;
   }
 }
