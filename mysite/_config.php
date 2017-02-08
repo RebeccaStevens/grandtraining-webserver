@@ -12,12 +12,12 @@ $database = 'ss_grandtraining';
 // Use _ss_environment.php file for configuration
 require_once('conf/ConfigureFromEnv.php');
 
-if (!defined('SITE_URL')) {
+if (!defined('SITE_APP_URL')) {
   header("HTTP/1.1 500 Internal Server Error");
   if (Director::isLive()) {
     die('500 Internal Server Error');
   } else {
-    die('SITE_URL is not defined');
+    die('SITE_APP_URL is not defined');
   }
 }
 

@@ -22,7 +22,7 @@ class WebAppPage extends SiteTree {
     $fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Web App Page Name', $this->WebAppPageName), 'Title');
 
     $urlSegment = $fields->fieldByName('Root.Main.URLSegment');
-    $urlSegment->setURLPrefix(SITE_URL);
+    $urlSegment->setURLPrefix(SITE_APP_URL);
 
     $fields->removeFieldFromTab('Root.Main', 'Content');
     $fields->removeFieldFromTab('Root.Main', 'Metadata');
@@ -31,7 +31,7 @@ class WebAppPage extends SiteTree {
   }
 
   public function AbsoluteLink($action = null) {
-    return Controller::join_links(SITE_URL, $this->RelativeLink($action));
+    return Controller::join_links(SITE_APP_URL, $this->RelativeLink($action));
   }
 
   public function PreviewLink($action = null) {
