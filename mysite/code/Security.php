@@ -16,7 +16,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 if (Director::isDev()) {
   header('Access-Control-Allow-Origin: *');
 } else {
-  header('Access-Control-Allow-Origin: ' . SITE_APP_URL);
+  header('Access-Control-Allow-Origin: ' . rtrim(SITE_APP_URL, '/'));
 }
 
 
