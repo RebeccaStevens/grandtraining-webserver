@@ -4,10 +4,10 @@ After: framework/routes#coreroutes
 ---
 SilverStripe\Control\Director:
   rules:
-    'data/config.json': DataConfigController
-    'data/home.json': DataHomeController
-    'data/classes.json': DataClassesController
-    'data/classes//$VenueID/$ClassCategoryPage!': DataClassesController
-    'data/faq.json': DataFAQController
-    'data/about-us.json': DataAboutUsController
-    'data/contact-us.json': DataContactUsController
+    'config.json': DataConfigController
+    'home.json': DataHomeController
+    'classes.json': DataClassesController
+    'classes//$VenueID/$ClassCategoryPage!': DataClassesController
+    'faq.json': DataFAQController
+    'about-us.json': DataAboutUsController
+    'contact-us.json': DataContactUsController
