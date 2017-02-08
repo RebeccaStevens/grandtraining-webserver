@@ -25,13 +25,13 @@ if (Director::isDev()) {
 if ($requestIsFromApp) {
   $token = null;  // only allow getting the id token from GET or POST methods
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $token = $_GET['id-token'];
+    $token = isset($_GET['id-token']) ? $_GET['id-token'] : null;
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $token = $_POST['id-token'];
+    $token = isset($_POST['id-token']) ? $_POST['id-token'] : null;
   }
 
   // if the token is set and is valid then this is not a new session
-  $newSession = !(isset($token) && preg_match('/^[-,a-zA-Z0-9]{1,128}$/', $token) > 0);
+  $newSession = !($token !== null && preg_match('/^[-,a-zA-Z0-9]{1,128}$/', $token) > 0);
 
   if (!$newSession) {
     session_id($token);
