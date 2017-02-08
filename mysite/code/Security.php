@@ -23,29 +23,37 @@ if (Director::isDev()) {
 // if the app is making a request, load the user's session using the given id-token.
 // Note: id-token in away also works as a CSRF token as it must explicitly be set with each request.
 if ($requestIsFromApp) {
-  $token = null;  // only allow getting the id token from GET or POST methods
+  $DATA = array();
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $token = isset($_GET['id-token']) ? $_GET['id-token'] : null;
+    $DATA = $_GET;
   } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $token = isset($_POST['id-token']) ? $_POST['id-token'] : null;
+    $DATA = $_POST;
   }
 
-  // if the token is set and is valid then this is not a new session
-  $newSession = !($token !== null && preg_match('/^[-,a-zA-Z0-9]{1,128}$/', $token) > 0);
+  $newSession = isset($DATA['create-new-id-token']) ? !!$DATA['create-new-id-token'] : false;
+  $token = !$newSession && isset($DATA['id-token']) ? $DATA['id-token'] : null;
 
-  if (!$newSession) {
-    session_id($token);
-  }
-  session_start();
-
-  // if the expiry date is not set or is expired
-  if (!isset($_SESSION['expiresAt']) || $_SESSION['expiresAt'] < date_create()) {
+  // only start a session if a new session was requested or a token given
+  if ($newSession || $token !== null) {
     if (!$newSession) {
-      // make a new session for this user
-      session_regenerate_id(true);
-      $_SESSION = array();
+      // if the token is in a invalid format, treat this as a new session
+      $newSession = preg_match('/^[-,a-zA-Z0-9]{1,128}$/', $token) !== 1;
     }
-    // set the new expiry date
-    $_SESSION['expiresAt'] = date_create()->add(new DateInterval('PT12H')); // 12 hours from now
+
+    if (!$newSession) {
+      session_id($token);
+    }
+    session_start();
+
+    // if the expiry date is not set or is expired
+    if (!isset($_SESSION['expiresAt']) || $_SESSION['expiresAt'] < date_create()) {
+      if (!$newSession) {
+        // make a new session for this user
+        session_regenerate_id(true);
+        $_SESSION = array();
+      }
+      // set the new expiry date
+      $_SESSION['expiresAt'] = date_create()->add(new DateInterval('PT12H')); // 12 hours from now
+    }
   }
 }
