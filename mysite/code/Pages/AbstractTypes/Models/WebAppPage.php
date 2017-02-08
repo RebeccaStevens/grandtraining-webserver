@@ -22,7 +22,7 @@ class WebAppPage extends SiteTree {
     $fields->addFieldToTab('Root.Main', ReadonlyField::create(null, 'Web App Page Name', $this->WebAppPageName), 'Title');
 
     $urlSegment = $fields->fieldByName('Root.Main.URLSegment');
-    $urlSegment->setURLPrefix(SITE_APP_URL);
+    $urlSegment->setURLPrefix(Controller::join_links(SITE_APP_URL, '/'));
 
     $fields->removeFieldFromTab('Root.Main', 'Content');
     $fields->removeFieldFromTab('Root.Main', 'Metadata');
