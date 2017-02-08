@@ -52,6 +52,7 @@ class DataConfigController extends DataController {
     }
 
     $this->echoJson(array(
+      'id-token' => session_id(),
       'company' => $company,
       'pages' => $pages,
       'regions' => $regions,
