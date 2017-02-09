@@ -4,6 +4,7 @@ After: framework/routes#coreroutes
 ---
 SilverStripe\Control\Director:
   rules:
+    'error-pages//$Code!': DataErrorController
     'config.json': DataConfigController
     'home.json': DataHomeController
     'classes.json': DataClassesController
