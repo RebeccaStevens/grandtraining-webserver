@@ -35,6 +35,6 @@ class WebAppPage extends SiteTree {
   }
 
   public function PreviewLink($action = null) {
-    return $this->AbsoluteLink($action);
+    return $this->AbsoluteLink($action) . '?id-token=' . session_id();
   }
 }

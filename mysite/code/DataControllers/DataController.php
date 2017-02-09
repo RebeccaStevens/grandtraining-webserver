@@ -4,11 +4,34 @@ use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Assets\Image;
+use SilverStripe\ORM\Versioning\Versioned;
+use SilverStripe\Security\Permission;
 
 /**
  * This contoller manages data request for the site.
  */
 abstract class DataController extends Controller {
+
+  protected function init() {
+    parent::init();
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+      $this->httpError(405);
+      die;
+    }
+
+    if (isset($_GET['CMSPreview']) && $_GET['CMSPreview'] && isset($_GET['previewStage'])) {
+      $stage = $_GET['previewStage'];
+      if ($stage === 'Live' || $stage === 'Stage') {
+        if ($stage === 'Stage' && !Permission::check('VIEW_DRAFT_CONTENT')) {
+          $this->httpError(403);
+          die;
+        } else {
+          Versioned::set_reading_mode('Stage.' . $stage);
+        }
+      }
+    }
+  }
 
   /**
    * Echo out the given data as json and set the response Content-Type header to json.
