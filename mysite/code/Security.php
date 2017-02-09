@@ -19,6 +19,7 @@ if (Director::isDev()) {
   header('Access-Control-Allow-Origin: ' . rtrim(SITE_APP_URL, '/'));
 }
 
+$newSession = false;
 
 // if the app is making a request, load the user's session using the given id-token.
 // Note: id-token in away also works as a CSRF token as it must explicitly be set with each request.
@@ -39,21 +40,23 @@ if ($requestIsFromApp) {
       // if the token is in a invalid format, treat this as a new session
       $newSession = preg_match('/^[-,a-zA-Z0-9]{1,128}$/', $token) !== 1;
     }
-
     if (!$newSession) {
       session_id($token);
     }
-    session_start();
-
-    // if the expiry date is not set or is expired
-    if (!isset($_SESSION['expiresAt']) || $_SESSION['expiresAt'] < date_create()) {
-      if (!$newSession) {
-        // make a new session for this user
-        session_regenerate_id(true);
-        $_SESSION = array();
-      }
-      // set the new expiry date
-      $_SESSION['expiresAt'] = date_create()->add(new DateInterval('PT12H')); // 12 hours from now
-    }
   }
+} else {
+  $newSession = !isset($_COOKIE['PHPSESSID']);
+}
+
+session_start();
+
+// if the expiry date is not set or is expired
+if (!isset($_SESSION['expiresAt']) || $_SESSION['expiresAt'] < date_create()) {
+  if (!$newSession) {
+    // make a new session for this user
+    session_regenerate_id(true);
+    $_SESSION = array();
+  }
+  // set the new expiry date
+  $_SESSION['expiresAt'] = date_create()->add(new DateInterval('PT12H')); // 12 hours from now
 }
