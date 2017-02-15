@@ -1,6 +1,7 @@
 <?php
 
 use SilverStripe\Control\Director;
+use SilverStripe\Control\Session;
 
 // figure out if the request came from the app.
 // Note: HTTP_REFERER forgery shouldn't be an issue here.
@@ -21,6 +22,7 @@ if (Director::isDev()) {
 }
 
 $newSession = false;
+$sid = null;
 
 // if the app is making a request, load the user's session using the given id-token.
 // Note: id-token in away also works as a CSRF token as it must explicitly be set with each request.
@@ -43,7 +45,7 @@ if (REQUEST_IS_FROM_APP) {
       $newSession = preg_match('/^[-,a-zA-Z0-9]{1,128}$/', $token) !== 1;
     }
     if (!$newSession) {
-      session_id($token);
+      $sid = $token;
     }
   }
 } else {
@@ -54,15 +56,16 @@ if (!defined('ID_TOKEN_GIVEN')) {
   define('ID_TOKEN_GIVEN', null);
 }
 
-session_start();
+Session::start($sid);
 
 // if the expiry date is not set or is expired
-if (!isset($_SESSION['expiresAt']) || $_SESSION['expiresAt'] < date_create()) {
+$expiresAt = Session::get('expiresAt');
+if ($expiresAt === null || $expiresAt < date_create()) {
   if (!$newSession) {
     // make a new session for this user
     session_regenerate_id(true);
-    $_SESSION = array();
+    Session::clear_all();
   }
   // set the new expiry date
-  $_SESSION['expiresAt'] = date_create()->add(new DateInterval('PT12H')); // 12 hours from now
+  Session::set('expiresAt', date_create()->add(new DateInterval('PT12H'))); // 12 hours from now
 }
