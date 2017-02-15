@@ -26,7 +26,7 @@ class ContactUsPageController extends WebAppPageController {
    */
   public function handleContactUs(HTTPRequest $request) {
     if (!$request->isPost()) {
-      $this->httpError(404);
+      $this->httpError(405);
       return;
     }
 
