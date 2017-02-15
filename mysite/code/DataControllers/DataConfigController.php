@@ -3,6 +3,7 @@
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\Control\Controller;
 
 class DataConfigController extends DataController {
 
@@ -75,7 +76,8 @@ class DataConfigController extends DataController {
         )
       ),
       'form-handlers' => array(
-        'contact-us' => DataObject::get(ContactUsPage::class)[0]->URLSegment . '/form-handler'
+        'contact-us' => ltrim(Controller::join_links(DataObject::get(ContactUsPage::class)[0]->Link(), 'form-handler'), '/'),
+        'signin'=> ltrim(Controller::join_links(DataObject::get(LoginPage::class)[0]->Link(), 'form-handler'), '/')
       ),
       'etrain' => array(
         'title' => $siteConfig->EtrainTitle,
