@@ -4,12 +4,13 @@ use SilverStripe\Control\Director;
 
 // figure out if the request came from the app.
 // Note: HTTP_REFERER forgery shouldn't be an issue here.
-$requestIsFromApp = false;
-
 if (isset($_SERVER['HTTP_REFERER'])) {
   if (parse_url($_SERVER['HTTP_REFERER'])['host'] === parse_url(SITE_APP_URL)['host']) {
-    $requestIsFromApp = true;
+    define('REQUEST_IS_FROM_APP', true);
   }
+}
+if (!defined('REQUEST_IS_FROM_APP')) {
+  define('REQUEST_IS_FROM_APP', false);
 }
 
 // Allow the app to use request made to the api
@@ -23,7 +24,7 @@ $newSession = false;
 
 // if the app is making a request, load the user's session using the given id-token.
 // Note: id-token in away also works as a CSRF token as it must explicitly be set with each request.
-if ($requestIsFromApp) {
+if (REQUEST_IS_FROM_APP) {
   $DATA = array();
   if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $DATA = $_GET;
@@ -33,6 +34,7 @@ if ($requestIsFromApp) {
 
   $newSession = isset($DATA['create-new-id-token']) ? !!$DATA['create-new-id-token'] : false;
   $token = !$newSession && isset($DATA['id-token']) ? $DATA['id-token'] : null;
+  define('ID_TOKEN_GIVEN', $token);
 
   // only start a session if a new session was requested or a token given
   if ($newSession || $token !== null) {
@@ -46,6 +48,10 @@ if ($requestIsFromApp) {
   }
 } else {
   $newSession = !isset($_COOKIE['PHPSESSID']);
+}
+
+if (!defined('ID_TOKEN_GIVEN')) {
+  define('ID_TOKEN_GIVEN', null);
 }
 
 session_start();
