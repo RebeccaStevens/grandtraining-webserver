@@ -10,7 +10,10 @@ class WebAppPageController extends ContentController {
    */
   public function init() {
     parent::init();
-    $this->httpError(404);
+    // if not a request from the app
+    if (!REQUEST_IS_FROM_APP) {
+      $this->httpError(404);
+    }
   }
 
   /**
