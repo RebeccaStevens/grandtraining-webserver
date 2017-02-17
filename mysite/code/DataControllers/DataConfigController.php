@@ -4,6 +4,7 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\Control\Controller;
+use SilverStripe\Security\Member;
 
 class DataConfigController extends DataController {
 
@@ -52,7 +53,7 @@ class DataConfigController extends DataController {
       );
     }
 
-    $this->echoJson(array(
+    $data = array(
       'id-token' => session_id(),
       'company' => $company,
       'pages' => $pages,
@@ -84,7 +85,13 @@ class DataConfigController extends DataController {
         'menuTitle' => $siteConfig->EtrainMenuTitle,
         'url' => $siteConfig->EtrainLink
       )
-    ));
+    );
+
+    if (Member::currentUser() !== null) {
+      $data['user'] = LoginPageController::getUserData();
+    }
+
+    $this->echoJson($data);
   }
 
 }
