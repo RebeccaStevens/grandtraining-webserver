@@ -26,6 +26,22 @@ class LoginPageController extends WebAppPageController {
   const ERROR_CODE_BAD_CREDENTIALS = 3;
 
   /**
+   * Get the user data information of the current user.
+   *
+   * @return Array|null
+   */
+  public static function getUserData() {
+    $member = Member::currentUser();
+    if ($member === null) {
+      return null;
+    }
+    return array(
+      'first-name' => $member->FirstName,
+      'last-name' => $member->LastName
+    );
+  }
+
+  /**
    * Get the contact us form.
    *
    * @return Form
@@ -112,11 +128,12 @@ class LoginPageController extends WebAppPageController {
     }
 
     header('Content-Type: application/json');
-    echo json_encode(array(
-      'successful' => true,
-      'first-name' => $member->FirstName,
-      'last-name' => $member->LastName,
-      'new-id-token' => $newIdToken
+    echo json_encode(array_merge(
+      self::getUserData(),
+      array(
+        'successful' => true,
+        'new-id-token' => $newIdToken
+      )
     ));
     return;
   }
