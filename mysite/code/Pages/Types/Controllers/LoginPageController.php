@@ -21,6 +21,10 @@ class LoginPageController extends WebAppPageController {
     'handleLogin'
   );
 
+  const ERROR_CODE_UNKNOWN = 1;
+  const ERROR_CODE_INVALID_FORM = 2;
+  const ERROR_CODE_BAD_CREDENTIALS = 3;
+
   /**
    * Get the contact us form.
    *
@@ -62,7 +66,10 @@ class LoginPageController extends WebAppPageController {
 
     if (!$form->validationResult()->isValid()) {
       header('Content-Type: application/json');
-      echo json_encode(array('successful' => false));
+      echo json_encode(array(
+        'successful' => false,
+        'errorCode' => self::ERROR_CODE_INVALID_FORM
+      ));
       return;
     }
 
@@ -72,7 +79,10 @@ class LoginPageController extends WebAppPageController {
 
     if (!($email && $password)) {
       header('Content-Type: application/json');
-      echo json_encode(array('successful' => false));
+      echo json_encode(array(
+        'successful' => false,
+        'errorCode' => self::ERROR_CODE_INVALID_FORM
+      ));
       return;
     }
 
@@ -83,9 +93,21 @@ class LoginPageController extends WebAppPageController {
 
     $newIdToken = session_id();
 
-    if ($member === null || !$newIdToken) {
+    if (!$newIdToken) {
       header('Content-Type: application/json');
-      echo json_encode(array('successful' => false));
+      echo json_encode(array(
+        'successful' => false,
+        'errorCode' => self::ERROR_CODE_UNKNOWN
+      ));
+      return;
+    }
+
+    if ($member === null) {
+      header('Content-Type: application/json');
+      echo json_encode(array(
+        'successful' => false,
+        'errorCode' => self::ERROR_CODE_BAD_CREDENTIALS
+      ));
       return;
     }
 
