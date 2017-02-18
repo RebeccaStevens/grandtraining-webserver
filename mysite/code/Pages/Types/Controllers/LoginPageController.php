@@ -37,7 +37,8 @@ class LoginPageController extends WebAppPageController {
     }
     return array(
       'first-name' => $member->FirstName,
-      'last-name' => $member->Surname
+      'last-name' => $member->Surname,
+      'email' => $member->Email
     );
   }
 
