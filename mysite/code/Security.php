@@ -67,6 +67,6 @@ if ($expiresAt === null || $expiresAt < date_create()) {
     Session::clear_all();
   }
   // set the new expiry date
-  Session::set('expiresAt', date_create()->add(new DateInterval('PT12H'))); // 12 hours from now
+  Session::set('expiresAt', date_create()->add(new DateInterval('P14D'))); // 14 days from now
   Session::save();
 }
