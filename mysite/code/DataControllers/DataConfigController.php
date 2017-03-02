@@ -78,7 +78,8 @@ class DataConfigController extends DataController {
       ),
       'form-handlers' => array(
         'contact-us' => ltrim(Controller::join_links(DataObject::get(ContactUsPage::class)[0]->Link(), 'form-handler'), '/'),
-        'signin'=> ltrim(Controller::join_links(DataObject::get(LoginPage::class)[0]->Link(), 'form-handler'), '/')
+        'signin'=> ltrim(Controller::join_links(DataObject::get(LoginPage::class)[0]->Link(), 'login-handler'), '/'),
+        'signup'=> ltrim(Controller::join_links(DataObject::get(LoginPage::class)[0]->Link(), 'signup-handler'), '/')
       ),
       'etrain' => array(
         'title' => $siteConfig->EtrainTitle,
