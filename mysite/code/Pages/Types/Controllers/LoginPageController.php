@@ -195,11 +195,13 @@ class LoginPageController extends WebAppPageController {
     $member = new Member();
     $form->saveInto($member);
 
-    // Write it to the database. This needs to happen before we add it to a group
-    $member->write();
-
     // Add the member to group.
     if ($group = DataObject::get_one('SilverStripe\Security\Group', "Code = 'users'")) {
+
+      // Write it to the database. This needs to happen before we add it to a group
+      $member->write();
+      $member->Groups()->add($group);
+
       $this->logUserIn($email, $password);
     } else {
       header('Content-Type: application/json');
